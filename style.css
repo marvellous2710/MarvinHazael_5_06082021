@@ -7,22 +7,54 @@ html{
 
 body{
     margin: 20px;
-    display: flex;
-    flex-wrap: wrap;
 }
+
+
+.header{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.logo img{
+    width: 250px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.basket{
+    background-color: antiquewhite;
+    padding: 20px;
+    border-radius: 20px;
+    width: 200px;
+    height: 60px;
+    text-align: center;
+}
+
+.basket a{
+    text-decoration: none;
+    color: black;
+}
+
+
 
 /* SECTION CARDS */
 
-.container{
+
+#container{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
+a{
+    text-decoration: none;
+    color: black;
+}
 
 .cards{
     justify-content: space-between;
-    width: 500px;
+    width: 400px;
     height: 350px;
     background:  #f3e9f1;
     border-radius: 20px;
@@ -32,22 +64,28 @@ body{
 
 .cards img{
     width: 100%;
-    height: 70%;
+    height: 60%;
     border-radius: 20px 20px 0 0;
     object-fit: cover;
 }
 
 
 h3{
-    font-size: 20px;
+    font-size: 15px;
     margin: 0;
 }
 
-.text{
+.text{  
     margin-left: 10px;
 }
 
 p{
     font-size: 15px;
     margin: 5px 0;
+}
+
+button{
+    height: 15px;
+    font-size: 10px;
+    cursor: pointer;
 }
