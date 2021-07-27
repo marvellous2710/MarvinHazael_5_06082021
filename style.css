@@ -5,21 +5,12 @@ html{
     background: #f3e9f1;
 }
 
-body{
-    margin: 20px;
-}
+/* HEADER */
 
 
 .header{
     display: flex;
     justify-content: space-between;
-
-}
-
-.logo img{
-    width: 250px;
-    height: 100px;
-    border-radius: 20px;
 }
 
 .basket{
@@ -31,20 +22,31 @@ body{
     text-align: center;
 }
 
-.basket a{
-    text-decoration: none;
-    color: black;
-}
-
-
 
 /* SECTION CARDS */
 
 
 #container{
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.cardsProduct{
+    width: 500px;
+    background-color: black;
+    margin-bottom: 20px;
+    border-radius: 20px 20px 10px 10px;
+    box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5); 
+}
+
+figure{
+    margin: 0;
+}
+
+img{
+    width: 500px;
+    border-radius: 20px 20px 0 0;
 }
 
 a{
@@ -52,40 +54,14 @@ a{
     color: black;
 }
 
-.cards{
-    justify-content: space-between;
-    width: 400px;
-    height: 350px;
-    background:  #f3e9f1;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    box-shadow:8px 8px 10px 0 rgba(0,0,0,0.5); 
-}
-
-.cards img{
-    width: 100%;
-    height: 60%;
-    border-radius: 20px 20px 0 0;
-    object-fit: cover;
-}
-
-
-h3{
-    font-size: 15px;
-    margin: 0;
-}
-
-.text{  
-    margin-left: 10px;
+.descript_text{
+    padding-left: 20px;
+    background-color: black;
+    color: white;
 }
 
 p{
-    font-size: 15px;
-    margin: 5px 0;
+    font-size: 20px;
 }
 
-button{
-    height: 15px;
-    font-size: 10px;
-    cursor: pointer;
-}
+

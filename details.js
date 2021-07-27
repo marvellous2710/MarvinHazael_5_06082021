@@ -1,11 +1,24 @@
-const queryString_url_id = window.location.search;
-console.log(queryString_url_id);
+//  const queryStringUrlId = window.location.search;
+// console.log(queryStringUrlId);
 
-const urlSearchParams = new URLSearchParams(queryString_url_id);
-console.log(urlSearchParams);
+// const urlSearchParams = new URLSearchParams(queryStringUrlId);
+// console.log(urlSearchParams);
 
-const detailsProducts = urlSearchParams.get("detailsProducts");
-console.log(detailsProducts);
+// const detailsproducts = urlSearchParams.get("detailsproducts");
+// console.log(detailsproducts); 
+ 
+
+
+//  METHODE 1  let response = await fetch(`http://localhost:3000/api/cameras/` + detailsproducts);
+
+
+
+
+
+
+
+
+
 
 
 
