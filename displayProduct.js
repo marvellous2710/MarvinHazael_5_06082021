@@ -1,27 +1,3 @@
-
-const containerCamera = document.getElementById("container")
-
-
-fetch("http://localhost:3000/api/cameras")
-.then(function(res){
-    if(res){
-        return res.json();
-    }
-}) 
-
-.then(function(arrayProduct){
-    arrayProduct.forEach((camera) => {
-        newProduct(camera, 'container');
-    });
-}) 
-
-.catch(function(error){
-    console.log(error);
-});
-
-
-
-
 // // fonction pour ajouter une balise a 
 
 function addLink (camera){
@@ -56,6 +32,14 @@ function addDescription(camera){
 
     const nameCamera = document.createElement("p");
     const priceCamera = document.createElement("p");
+    const productDetails = document.createElement("p");
+    const basketButton = document.createElement("button");
+
+    //menu déroulant
+    const scrollingMenu = document.createElement("select");
+    const lensesChoice = document.createElement("option");
+    
+    
     
 
 
@@ -63,15 +47,28 @@ function addDescription(camera){
 
     nameCamera.innerText = camera.name;
     priceCamera.innerText = camera.price/100 + "€";
+    productDetails.innerText = camera.description;
+    basketButton.innerText = "Commander";
+    lensesChoice.innerText = camera.lenses;
+    
+    
     
 
-    //ajout du nom et du prix
+    //ajout du nom , du prix, du panier
     divDescription.appendChild(nameCamera);
-   divDescription.appendChild(priceCamera);
+    divDescription.appendChild(priceCamera);
+    divDescription.appendChild(productDetails);
+    divDescription.appendChild(basketButton);
+
+    divDescription.appendChild(scrollingMenu);
+    scrollingMenu.appendChild(lensesChoice);
+
+
+
    
 
 
-   return divDescription;
+    return divDescription;
 }
 
 
@@ -101,33 +98,5 @@ function newProduct(camera, container){
        // AJOUT DE LA DIV DANS LE DOM (dans l'écran)
        document.getElementById(container).appendChild(containerProduct);
 
-  
+   
 };
-
-
-
-
-
-
-//     /*
-//     ajout des element HTML pour chaque élément de la reponse
-
-//     debut boucle data
-//         //Créer les objets DOM à ajouter dans la page
-        
-//         let cardDiv   = new Element('div');
-//         cardDiv.addAttribut('attribut à ajouter', 'value');
-
-//         let cardImage = new Element('img');
-
-//         let cardLink  = new Element('a');
-
-//         cardDiv.append(cardImage);
-//         cardLink.append(cardDiv);
-
-//         document.getElementById('container').append(cardLink);
-
-
-//     fin boucle
-
-//     */
