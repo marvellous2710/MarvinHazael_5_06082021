@@ -2,8 +2,8 @@
 
 function addLink (camera){
 
-    const link = document.createElement("a");
-    link.setAttribute("href", "details.html?id="+camera._id);
+    const link = document.createElement("div");
+    
    
     return link;
 }
@@ -34,24 +34,60 @@ function addDescription(camera){
     const priceCamera = document.createElement("p");
     const productDetails = document.createElement("p");
     const basketButton = document.createElement("button");
+    basketButton.classList.add("basket_btn");
 
     //menu déroulant
     const scrollingMenu = document.createElement("select");
-    const lensesChoice = document.createElement("option");
+    scrollingMenu.setAttribute("id","lensesSelect");
+    //const lensesChoice = document.createElement("option");
     
-    
-    
+    const lenses = document.getElementsByClassName("lenses-class");
 
+    const theLenses = "http://localhost:3000/api/cameras/"
+
+    // const libila = urlParams.get("lenses");
+
+    // function getLenses(){
+    //     return new Promise((resolve, reject) => {
+    //         fetch(`http://localhost:3000/api/cameras/` + libila)
+    //         .then(data => data.json())
+    //         .then(lenses => {
+    //             console.log("lenses", lenses);
+    //             resolve(lenses);
+    //         })
+    //     });
+    // }
+
+    // getLenses().then(data =>{
+    //     let option;
+    //     Object.entries(data.lenses).forEach(lenses => {
+    //         option = document.createElement("option");
+    //         option.text = lenses[0];
+    //         lenses.add(option);
+    //     });
+    // });
 
     //recuperation du nom et du prix sur l'API
 
     nameCamera.innerText = camera.name;
-    priceCamera.innerText = camera.price/100 + "€";
+    priceCamera.innerText = (camera.price/100).toFixed(2) + "€";
     productDetails.innerText = camera.description;
     basketButton.innerText = "Commander";
-    lensesChoice.innerText = camera.lenses;
+    //lensesChoice.innerText = camera.lenses;
+
+
     
+
+
+    // const lensiz = [`http://localhost:3000/api/cameras/` + lenses];
+
+    // lensiz.forEach(function(lense) {
+    //     let option = document.createElement('option');
+
+    //     document.querySelector('.lenses-class').appendChild(option);
+    // });
     
+  
     
 
     //ajout du nom , du prix, du panier
@@ -61,11 +97,8 @@ function addDescription(camera){
     divDescription.appendChild(basketButton);
 
     divDescription.appendChild(scrollingMenu);
-    scrollingMenu.appendChild(lensesChoice);
+    //scrollingMenu.appendChild(lensesChoice);
 
-
-
-   
 
 
     return divDescription;
@@ -75,7 +108,7 @@ function addDescription(camera){
 // FONCTION POUR APPELER LES PRODUITS
 
 function newProduct(camera, container){
-   //array.forEach((camera) => {
+  
 
        //creation de la div produit
        const containerProduct = document.createElement("div");
@@ -100,3 +133,18 @@ function newProduct(camera, container){
 
    
 };
+
+
+
+//-----------PANIER---------------------------//
+
+let basket = document.querySelectorAll('.basket_btn');
+
+for (let i=0; i < basket.length; i++) {
+    basket[i].addEventListener('click', () => {
+        console.log("hello world");
+    })
+}
+
+
+

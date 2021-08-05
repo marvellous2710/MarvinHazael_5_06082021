@@ -6,15 +6,42 @@ const urlParams = new URLSearchParams(window.location.search);
 console.log(urlParams);
 
 const idProduct = urlParams.get("id");
-console.log(idProduct);
+// console.log(idProduct);
+
+
 
 fetch(`http://localhost:3000/api/cameras/` + idProduct)
   .then((res) => res.json())
   .then((data) => {
     newProduct(data, 'containerDetails');
-    console.log(data)
+    console.log(data);
+      data.lenses.forEach(option => {
+      newChoise = addOptionToSelect(option);
+      document.getElementById('lensesSelect').appendChild(newChoise);
+    });
   });
 
+  function addOptionToSelect(opt) {
+    /* Création de la balise option */
+    const newOption = document.createElement('option');
+    newOption.classList.add('lense');
+
+    /* remplissage de la balise option */
+    newOption.textContent = opt;
+    return newOption;
+  }
+ 
+  // SELECTED pour les lentilles qui permet de choisir
+
+  
+
+
+
+
+  //lenSes.forEach(function(lenSes){
+    //let option = document.createElement("option");
+
+   // document.querySelector('.lenses-class').appendChild(option);
 
 
 
