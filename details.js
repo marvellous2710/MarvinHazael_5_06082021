@@ -1,12 +1,9 @@
 
 
-const contCam = document.getElementById("containerDetails")
-
-const urlParams = new URLSearchParams(window.location.search);
+const contCam = document.getElementById("containerDetails");
+const urlParams = new URLSearchParams(window.location.search); //redirection vers autre page
 console.log(urlParams);
-
 const idProduct = urlParams.get("id");
-// console.log(idProduct);
 
 
 
@@ -15,64 +12,35 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
   .then((data) => {
     newProduct(data, 'containerDetails');
     console.log(data);
-      data.lenses.forEach(option => {
-      newChoise = addOptionToSelect(option);
-      document.getElementById('lensesSelect').appendChild(newChoise);
+
+    localStorage.setItem('currentCamera', JSON.stringify(data));
+
+    data.lenses.forEach(option => {
+      //const/let newLenses = addOptionToSelect(option);
+      document.getElementById('lensesSelect').appendChild(addOptionToSelect(option));
     });
   });
+  
 
-  function addOptionToSelect(opt) {
+
+  function addOptionToSelect(option) {
     /* Création de la balise option */
     const newOption = document.createElement('option');
     newOption.classList.add('lense');
 
     /* remplissage de la balise option */
-    newOption.textContent = opt;
+  
+    newOption.textContent = option;
+    newOption.value = option;
+
     return newOption;
   }
  
-  // SELECTED pour les lentilles qui permet de choisir
-
-  
-
-
-
-
-  //lenSes.forEach(function(lenSes){
-    //let option = document.createElement("option");
-
-   // document.querySelector('.lenses-class').appendChild(option);
 
 
 
 
 
-
-
-
-
-
-
-
-//------------------------------------------------------------//
-
- //récupèration de la chaine de requete dans l'url
-//const queryStringUrlId = window.location.search;
-//console.log(queryStringUrlId);
-
-
-  //extraire l'id
-//const camEra = new URLSearchParams(queryStringUrlId);
-//console.log(camEra);
-
-//const containerDetails = bonJour.get("_id");
-//console.log(containerDetails); 
- 
-
-
-//  METHODE 1  let response = await fetch(`http://localhost:3000/api/cameras/` + containerDetails);
-
-// let response = await fetch(`http://localhost:3000/api/cameras/_id);
 
 
 

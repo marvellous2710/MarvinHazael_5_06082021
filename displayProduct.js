@@ -1,10 +1,11 @@
-// // fonction pour ajouter une balise a 
+
+
 
 function addLink (camera){
 
     const link = document.createElement("div");
-    
-   
+
+
     return link;
 }
 
@@ -25,83 +26,39 @@ function addImage(camera){
 
 // //div description
 
-function addDescription(camera){
+addDescription (ajoutElement);
 
-    const divDescription = document.createElement("div");
-    divDescription.classList.add("descript_text");
+function ajoutElement(camera){
+    
+    //const divDescription = document.createElement("div");
+    //divDescription.classList.add("descript_text");
 
-    const nameCamera = document.createElement("p");
-    const priceCamera = document.createElement("p");
+    //const nameCamera = document.createElement("p");
+    //const priceCamera = document.createElement("p");
     const productDetails = document.createElement("p");
     const basketButton = document.createElement("button");
-    basketButton.classList.add("basket_btn");
-
-    //menu déroulant
-    const scrollingMenu = document.createElement("select");
-    scrollingMenu.setAttribute("id","lensesSelect");
-    //const lensesChoice = document.createElement("option");
-    
-    const lenses = document.getElementsByClassName("lenses-class");
-
-    const theLenses = "http://localhost:3000/api/cameras/"
-
-    // const libila = urlParams.get("lenses");
-
-    // function getLenses(){
-    //     return new Promise((resolve, reject) => {
-    //         fetch(`http://localhost:3000/api/cameras/` + libila)
-    //         .then(data => data.json())
-    //         .then(lenses => {
-    //             console.log("lenses", lenses);
-    //             resolve(lenses);
-    //         })
-    //     });
-    // }
-
-    // getLenses().then(data =>{
-    //     let option;
-    //     Object.entries(data.lenses).forEach(lenses => {
-    //         option = document.createElement("option");
-    //         option.text = lenses[0];
-    //         lenses.add(option);
-    //     });
-    // });
+    basketButton.setAttribute("id", "basket_btn");
 
     //recuperation du nom et du prix sur l'API
 
-    nameCamera.innerText = camera.name;
-    priceCamera.innerText = (camera.price/100).toFixed(2) + "€";
+    //nameCamera.innerText = camera.name;
+    //priceCamera.innerText = (camera.price/100).toFixed(2) + "€";
     productDetails.innerText = camera.description;
     basketButton.innerText = "Commander";
-    //lensesChoice.innerText = camera.lenses;
-
-
+    
     
 
-
-    // const lensiz = [`http://localhost:3000/api/cameras/` + lenses];
-
-    // lensiz.forEach(function(lense) {
-    //     let option = document.createElement('option');
-
-    //     document.querySelector('.lenses-class').appendChild(option);
-    // });
-    
-  
-    
-
-    //ajout du nom , du prix, du panier
-    divDescription.appendChild(nameCamera);
-    divDescription.appendChild(priceCamera);
+    //ajout du nom , du prix, du panier, lenses
+    //divDescription.appendChild(nameCamera);
+   // divDescription.appendChild(priceCamera);
     divDescription.appendChild(productDetails);
     divDescription.appendChild(basketButton);
+    divDescription.appendChild(lensesSelect);
+    
 
-    divDescription.appendChild(scrollingMenu);
-    //scrollingMenu.appendChild(lensesChoice);
-
-
-
+    
     return divDescription;
+  
 }
 
 
@@ -131,20 +88,60 @@ function newProduct(camera, container){
        // AJOUT DE LA DIV DANS LE DOM (dans l'écran)
        document.getElementById(container).appendChild(containerProduct);
 
-   
+       //-------------------PANIER-----------------------//
+
+        //Clique du bouton COMMANDER
+
+        var cart = 0
+
+        var btnAdd = document.querySelector('#basket_btn')
+
+        var element = document.querySelector(".basket")
+        element.innerText = cart
+
+        btnAdd.addEventListener('click', function(){
+
+            cart++;
+            element.innerText = cart;
+            console.log(cart);
+
+            //verifier si une lentille est sélectionnée, soit la valeur de l'element select différente de 0
+            //Si une lentille est sélectionnée alors :
+                //recuperer le panier
+                //recuperer la camera courante
+                //Affecter la lentille selectionnée dans l'objet camera
+                //enregistrer la camera dans le panier (le tableau)
+                //enregistrer le panier dans le localStorage
+                //mettre à jour l'affichage du nb article
+            //Sinon message d'erreur invitant l'utilisateur à selectionner une lentille
+
+
+            // choix de l'utilisateur dans une variable
+            const choixForm = idForm.value;
+            console.log(choixForm);
+        
+            // sélection du bouton d'ajout
+            const addBtn = document.querySelector("#basket_btn");
+
+
+        })
+        
+        //Selection des OPTIONS LENSES
+        const idForm = document.querySelector("#lensesSelect");
+
+         // choix de l'utilisateur dans une variable
+         const choixForm = idForm.value;
+       
+     
+        // sélection du bouton d'ajout
+        const addBtn = document.querySelector("#basket_btn");
+        
+
+        //récupération des détails du produit
+
+       
 };
 
-
-
-//-----------PANIER---------------------------//
-
-let basket = document.querySelectorAll('.basket_btn');
-
-for (let i=0; i < basket.length; i++) {
-    basket[i].addEventListener('click', () => {
-        console.log("hello world");
-    })
-}
 
 
 

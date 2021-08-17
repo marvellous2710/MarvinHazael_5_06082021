@@ -62,12 +62,12 @@ function addDescription(camera){
     //recuperation du nom et du prix sur l'API
 
     nameCamera.innerText = camera.name;
-    priceCamera.innerText = camera.price/100 + "€";
+    priceCamera.innerText = (camera.price/100).toFixed(2) + "€";
     
 
     //ajout du nom et du prix
     divDescription.appendChild(nameCamera);
-   divDescription.appendChild(priceCamera);
+    divDescription.appendChild(priceCamera);
    
 
 
@@ -78,7 +78,7 @@ function addDescription(camera){
 // FONCTION POUR APPELER LES PRODUITS
 
 function newProduct(camera, container){
-   //array.forEach((camera) => {
+  
 
        //creation de la div produit
        const containerProduct = document.createElement("div");
@@ -103,31 +103,3 @@ function newProduct(camera, container){
 
   
 };
-
-
-
-
-
-
-//     /*
-//     ajout des element HTML pour chaque élément de la reponse
-
-//     debut boucle data
-//         //Créer les objets DOM à ajouter dans la page
-        
-//         let cardDiv   = new Element('div');
-//         cardDiv.addAttribut('attribut à ajouter', 'value');
-
-//         let cardImage = new Element('img');
-
-//         let cardLink  = new Element('a');
-
-//         cardDiv.append(cardImage);
-//         cardLink.append(cardDiv);
-
-//         document.getElementById('container').append(cardLink);
-
-
-//     fin boucle
-
-//     */
