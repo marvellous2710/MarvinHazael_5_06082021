@@ -1,6 +1,4 @@
 
-
-
  function addLink (camera){
 
     const link = document.createElement("a");
@@ -22,8 +20,6 @@ function addImage(camera){
     
     return imageFigureCamera;
 }
-
-
 
 // //div description
 
@@ -48,9 +44,6 @@ function addDescription(camera){
 
    return divDescription;
 }
-
-
-
 
 
 // FONCTION POUR APPELER LES PRODUITS
@@ -84,31 +77,33 @@ function newProduct(camera, container){
        document.getElementById(container).appendChild(containerProduct);
 };
 
- //addDescription (addElement);  //ajout bouton commander +lentilles+description
+
+
+//addElement ();  //ajout bouton commander +lentilles+description
 
 function addElement(camera){
-    
+
     const divDescription = document.createElement("div");
-    divDescription.classList.add("descript_text");
-    
-    const productDetails = document.createElement("p");
-    const basketButton = document.createElement("button");
-    basketButton.setAttribute("id", "basket_btn");
+    divDescription.classList.add("descript_text");  
+   
+  const productDetails = document.createElement("p");
+  const basketButton = document.createElement("button");
+  basketButton.setAttribute("id", "basket_btn");
 
-    //recuperation du nom et du prix sur l'API
+  //recuperation du nom et du prix sur l'API
 
-    productDetails.innerText = camera.description;
-    basketButton.innerText = "Commander";
-    
-    
-    divDescription.appendChild(productDetails);
-    divDescription.appendChild(basketButton);
-    divDescription.appendChild(lensesSelect);
-    
-
-    
-    return divDescription;
+  productDetails.innerText = camera.description;
+  basketButton.innerText = "Commander";
   
+  
+   divDescription.appendChild(productDetails);
+   divDescription.appendChild(basketButton);
+   divDescription.appendChild(lensesSelect);
+  
+
+  
+   return divDescription;
+
 };
 
 

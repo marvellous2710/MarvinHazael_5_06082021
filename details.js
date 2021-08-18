@@ -11,17 +11,24 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
   .then((res) => res.json())
   .then((data) => {
     newProduct(data, 'containerDetails');
+    addElement(data);
     console.log(data);
+
+    
 
     localStorage.setItem('currentCamera', JSON.stringify(data));  //LOCAL STORAGE
 
 
-    data.lenses.forEach(option => {
+
+
+
+    //data.lenses.forEach(option => {
       //const/let newLenses = addOptionToSelect(option);
-      document.getElementById('lensesSelect').appendChild(addOptionToSelect(option));
-    });
+     // document.getElementById('lensesSelect').appendChild(addOptionToSelect(option));
+    //});
   });
   
+
 
 
   function addOptionToSelect(option) {
