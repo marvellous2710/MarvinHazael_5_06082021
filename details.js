@@ -13,7 +13,8 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
     newProduct(data, 'containerDetails');
     console.log(data);
 
-    localStorage.setItem('currentCamera', JSON.stringify(data));
+    localStorage.setItem('currentCamera', JSON.stringify(data));  //LOCAL STORAGE
+
 
     data.lenses.forEach(option => {
       //const/let newLenses = addOptionToSelect(option);

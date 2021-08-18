@@ -21,85 +21,83 @@ fetch("http://localhost:3000/api/cameras")
 
 
 
+// // // fonction pour ajouter une balise a 
 
-// // fonction pour ajouter une balise a 
+//  function addLink (camera){
 
-function addLink (camera){
-
-    const link = document.createElement("a");
-    link.setAttribute("href", "details.html?id="+camera._id);
+//     const link = document.createElement("a");
+//     link.setAttribute("href", "details.html?id="+camera._id);
    
-    return link;
-}
+//      return link;
+//  }
 
-// // fonction pour ajouter les images
+//  // fonction pour ajouter les images
 
-function addImage(camera){
+//  function addImage(camera){
 
-    const imageFigureCamera = document.createElement("figure");
-    const imageCamera = document.createElement("img");
+//      const imageFigureCamera = document.createElement("figure");
+//      const imageCamera = document.createElement("img");
 
-    imageCamera.setAttribute("src", camera.imageUrl);
-    imageFigureCamera.appendChild(imageCamera);
+//      imageCamera.setAttribute("src", camera.imageUrl);
+//      imageFigureCamera.appendChild(imageCamera);
     
-    return imageFigureCamera;
-}
+//     return imageFigureCamera;
+//  }
 
 
 
-// //div description
+//  // //div description
 
-function addDescription(camera){
+//  function addDescription(camera){
 
-    const divDescription = document.createElement("div");
-    divDescription.classList.add("descript_text");
+//      const divDescription = document.createElement("div");
+//      divDescription.classList.add("descript_text");
 
-    const nameCamera = document.createElement("p");
-    const priceCamera = document.createElement("p");
-    
-
-
-    //recuperation du nom et du prix sur l'API
-
-    nameCamera.innerText = camera.name;
-    priceCamera.innerText = (camera.price/100).toFixed(2) + "€";
+//      const nameCamera = document.createElement("p");
+//      const priceCamera = document.createElement("p");
     
 
-    //ajout du nom et du prix
-    divDescription.appendChild(nameCamera);
-    divDescription.appendChild(priceCamera);
+
+//      //recuperation du nom et du prix sur l'API
+
+//      nameCamera.innerText = camera.name;
+//      priceCamera.innerText = (camera.price/100).toFixed(2) + "€";
+    
+
+//      //ajout du nom et du prix
+//      divDescription.appendChild(nameCamera);
+//      divDescription.appendChild(priceCamera);
    
 
+//     return divDescription;
+// }
 
-   return divDescription;
-}
 
+// // // FONCTION POUR APPELER LES PRODUITS
 
-// FONCTION POUR APPELER LES PRODUITS
-
-function newProduct(camera, container){
+//  function newProduct(camera, container){
   
 
-       //creation de la div produit
-       const containerProduct = document.createElement("div");
-       containerProduct.classList.add("cardsProduct"); //c'est le container des cartes
+//         //creation de la div produit
+//         const containerProduct = document.createElement("div");
+//        containerProduct.classList.add("cardsProduct"); //c'est le container des cartes
 
-       //ajout du lien
-       const link = addLink(camera);
+//        //ajout du lien
+//         const link = addLink(camera);
        
-       //ajout des images
-       const image = addImage(camera);
+//         //ajout des images
+//         const image = addImage(camera);
 
-       //ajout du texte description
-       const description = addDescription(camera);
+//         //ajout du texte description
+//         const description = addDescription(camera);
 
-       // Montage de la DIV
-       link.appendChild(image);
-       link.appendChild(description);
-       containerProduct.appendChild(link);
+//        // Montage de la DIV
+//        link.appendChild(image);
+//         link.appendChild(description);
+//         containerProduct.appendChild(link);
 
-       // AJOUT DE LA DIV DANS LE DOM (dans l'écran)
-       document.getElementById(container).appendChild(containerProduct);
+//         // AJOUT DE LA DIV DANS LE DOM (dans l'écran)
+//         document.getElementById(container).appendChild(containerProduct);
 
   
-};
+//  };
