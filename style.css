@@ -54,7 +54,7 @@ a{
     color: black;
 }
 
-.descript_text{
+#descripText{
     padding-left: 20px;
     background-color: black;
     color: white;
