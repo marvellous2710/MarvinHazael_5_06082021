@@ -17,10 +17,10 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
     localStorage.setItem('currentCamera', JSON.stringify(data));  //LOCAL STORAGE
     
     data.lenses.forEach(option => {
-      const newLenses = addOptionToSelect(option);
+      //const newLenses = addOptionToSelect(option);
 
       //let ou const au dessus
-      document.getElementById('lassIz').appendChild(addOptionToSelect(option));
+     document.getElementById('lensesSelect').appendChild(addOptionToSelect(option));
     });
   });
   
@@ -28,31 +28,37 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
 //function pour la description
 function addText(camera){
 
-  const divEcho = document.createElement("div");
+  const divText = document.createElement("div");
 
   const productDetails = document.createElement("p");
 
   productDetails.innerText = camera.description;
 
-  divEcho.appendChild(productDetails);
+  divText.appendChild(productDetails);
 
   return productDetails;
 }
 
+//function pour le select
+function addSelect(option){
+   const newSelect = document.createElement('select');
+   newSelect.setAttribute("id", "lenses");
 
+   return newSelect;
+}
 
 //function pour les option
 function addOptionToSelect(option) {
-  /* Création de la balise option */
-  const newOption = document.createElement('option');
-  newOption.setAttribute("id", "lassIz");
+   /* Création de la balise option */
+   const newOption = document.createElement('option');
+  
 
-  /* remplissage de la balise option */
+   /* remplissage de la balise option */
+   newOption.textContent = option;
+   newOption.value = option;
+  
 
-  newOption.textContent = option;
-  newOption.value = option;
-
-  return newOption;
+   return newOption;
 }
 
 
@@ -65,6 +71,9 @@ function addElement(camera, descripText){
   //ajout de la description de la camera
   const text = addText(camera);
   
+  //ajout du select
+  const select = addSelect(camera);
+
   //ajout des options pour les lentilles
   const lense = addOptionToSelect(camera);
 
@@ -75,15 +84,31 @@ function addElement(camera, descripText){
 
   basketButton.innerText = "Commander";
 
+  
   containerLorem.appendChild(text);
-  containerLorem.appendChild(lense);
+  containerLorem.appendChild(select);
+  select.appendChild(lense);
+  containerLorem.appendChild(lensesSelect);
   containerLorem.appendChild(basketButton);
 
   document.getElementById(descripText).appendChild(containerLorem);
 };
 
+//clique du bouton commander
 
+let cart = 0
 
+let btnAdd = document.querySelector('#basket_btn');
+
+let element = document.querySelector("#cart")
+element.innerText = cart
+
+btnAdd.addEventListener('click', function(){
+
+  cart++;
+  element.innerText = cart;
+  console.log(cart);
+})
 
 
 

@@ -1,10 +1,10 @@
+// function addLink (camera){
 
- function addLink (camera){
+//      const link = document.createElement("a");
+//      link.setAttribute("href", "details.html?id="+camera._id);
 
-    const link = document.createElement("a");
-     link.setAttribute("href", "details.html?id="+camera._id);
-     return link;
-  }
+//       return link;
+// }
 
 
 
@@ -12,7 +12,8 @@
 
 function addImage(camera){
 
-    const imageFigureCamera = document.createElement("figure");
+    const imageFigureCamera = document.createElement("figure"); 
+    
     const imageCamera = document.createElement("img");
 
     imageCamera.setAttribute("src", camera.imageUrl);
@@ -53,9 +54,10 @@ function newProduct(camera, container){
        //creation de la div produit
        const containerProduct = document.createElement("div");
        containerProduct.classList.add("cardsProduct"); //c'est le container des cartes
+       
 
        //ajout du lien
-       const link = addLink(camera);
+       //const link = addLink(camera);
        
        //ajout des images
        const image = addImage(camera);
@@ -66,11 +68,14 @@ function newProduct(camera, container){
        
 
        // Montage de la DIV
-        
+        //link.appendChild(image);
+        image.appendChild(description);
+        containerProduct.appendChild(image);
 
-       link.appendChild(image);
-       link.appendChild(description);
-       containerProduct.appendChild(link);
+        // Montage de la DIV
+        //  link.appendChild(image);
+        //  link.appendChild(description);
+        //  containerProduct.appendChild(link);
 
        // AJOUT DE LA DIV DANS LE DOM (dans l'écran)
        document.getElementById(container).appendChild(containerProduct);

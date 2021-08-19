@@ -12,13 +12,34 @@ fetch("http://localhost:3000/api/cameras")
 .then(function(arrayProduct){
     arrayProduct.forEach((camera) => {
         newProduct(camera, 'container');
+        //addLinkProduct(camera, 'container');
     });
+    
 }) 
+
 
 .catch(function(error){
     console.log(error);
 });
 
+
+
+function addLink (camera){
+
+    const link = document.createElement("a");
+    link.setAttribute("href", "details.html?id="+camera._id);
+
+     return link;
+}
+
+function addLinkProduct(camera){
+
+    const link = addLink(camera);
+
+    link.appendChild(cardsProduct);
+
+    document.getElementById(container).appendChild(cardsProduct);
+}
 
 
 // // // fonction pour ajouter une balise a 
