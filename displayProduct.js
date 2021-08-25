@@ -1,13 +1,3 @@
-// function addLink (camera){
-
-//      const link = document.createElement("a");
-//      link.setAttribute("href", "details.html?id="+camera._id);
-
-//       return link;
-// }
-
-
-
 // // fonction pour ajouter les images
 
 function addImage(camera){
@@ -48,7 +38,7 @@ function addDescription(camera){
 
 // FONCTION POUR APPELER LES PRODUITS
 
-function newProduct(camera, container){
+function newProduct(camera){
   
 
        //creation de la div produit
@@ -66,82 +56,13 @@ function newProduct(camera, container){
        const description = addDescription(camera);
 
        
-
        // Montage de la DIV
-        //link.appendChild(image);
         image.appendChild(description);
         containerProduct.appendChild(image);
 
-        // Montage de la DIV
-        //  link.appendChild(image);
-        //  link.appendChild(description);
-        //  containerProduct.appendChild(link);
-
-       // AJOUT DE LA DIV DANS LE DOM (dans l'écran)
-       document.getElementById(container).appendChild(containerProduct);
+    return containerProduct;
 };
 
-
-
-// //addElement ();  //ajout bouton commander +lentilles+description
-
-// function addElement(camera){
-
-//     const divDescription = document.createElement("div");
-//     divDescription.classList.add("descript_text");  
-   
-//   const productDetails = document.createElement("p");
-//   const basketButton = document.createElement("button");
-//   basketButton.setAttribute("id", "basket_btn");
-
-//   //recuperation du nom et du prix sur l'API
-
-//   productDetails.innerText = camera.description;
-//   basketButton.innerText = "Commander";
-  
-  
-//    divDescription.appendChild(productDetails);
-//    divDescription.appendChild(basketButton);
-//    divDescription.appendChild(lensesSelect);
-  
-
-  
-//    return divDescription;
-
-// };
-
-
-
- 
-
-/* ajouter addElement a detail.js pour avoir le bouton les lentilles */
-
-
-
-
-
-
-
-
-
-
-
-       //-------------------PANIER-----------------------//
-
-          //Clique du bouton COMMANDER
-
-//         var cart = 0
-
-//         var btnAdd = document.querySelector('#basket_btn')
-
-//         var element = document.querySelector("#cart")
-//         element.innerText = cart
-
-//         btnAdd.addEventListener('click', function(){
-
-//             cart++;
-//             element.innerText = cart;
-//             console.log(cart);
 
 //             //verifier si une lentille est sélectionnée, soit la valeur de l'element select différente de 0
 //             //Si une lentille est sélectionnée alors :
@@ -154,23 +75,4 @@ function newProduct(camera, container){
 //             //Sinon message d'erreur invitant l'utilisateur à selectionner une lentille
 
 
-//             // choix de l'utilisateur dans une variable
-//             const choixForm = idForm.value;
-//             console.log(choixForm);
-        
-//             // sélection du bouton d'ajout
-//             const addBtn = document.querySelector("#basket_btn");
-
-
-//         })
-        
-//         //Selection des OPTIONS LENSES
-//         const idForm = document.querySelector("#lensesSelect");
-
-//          // choix de l'utilisateur dans une variable
-//          const choixForm = idForm.value;
-       
-     
-//         // sélection du bouton d'ajout
-//         const addBtn = document.querySelector("#basket_btn");       
 

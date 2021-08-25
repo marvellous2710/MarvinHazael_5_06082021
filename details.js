@@ -1,8 +1,5 @@
-
-
 const contCam = document.getElementById("containerDetails");
 const urlParams = new URLSearchParams(window.location.search); //redirection vers autre page
-console.log(urlParams);
 const idProduct = urlParams.get("id");
 
 
@@ -10,20 +7,77 @@ const idProduct = urlParams.get("id");
 fetch(`http://localhost:3000/api/cameras/` + idProduct)
   .then((res) => res.json())
   .then((data) => {
-    newProduct(data, 'containerDetails');
+    //enregistrer le produit recupéré dans le localStorage (currentItem)
+    let productContainer = newProduct(data);
+    document.getElementById('containerDetails').appendChild(productContainer);
     addElement(data, 'descripText');
     console.log(data);
 
-    localStorage.setItem('currentCamera', JSON.stringify(data));  //LOCAL STORAGE
-    
-    data.lenses.forEach(option => {
-      //const newLenses = addOptionToSelect(option);
 
-      //let ou const au dessus
-     document.getElementById('lensesSelect').appendChild(addOptionToSelect(option));
-    });
-  });
+    const addButton = document.getElementById("basketBtn");
+    const lenseAdd = document.getElementById("lenses");
+    let cart = 0;
+    let element = document.querySelector("#cart");
+    element.innerText = cart;
+    let verifMess = document.getElementById("error");
+
+      addButton.addEventListener('click', () => {
+
+        if (lenseAdd.value == 0){
+
+          verifMess.textContent = 'Merci de choisir une lentille';//afficher un message d'erreur 
+          console.log('not okay');
+
+          return;
+        } else{
+          verifMess.textContent = "";//pour masquer le message d'erreur
+          console.log('commandé !');
+         
+        }
+ 
+      
+        
+        
+        let produit = JSON.parse(localStorage.getItem("currentItem"));
+       //ajouter a produit(currentItem) la lentille selectionnée
+        //recupere le panier avec getCart()
+        //ajoute la nouvelle camera dans le panier avec la lentille (produit)
+        //mettre à jour le nbArticle en affichant la taille du panier
+        //ne pas oublier de réenregistrer le panier dans le localStorage :)
+        
+
+        //  cart++;
+        //  element.innerText = cart;
+         //console.log(cart);
+        
+       
+
+        // if(produit){
+
+        // }
+        // else{
+        //   produit = [];
+        //   produit.push(data);
+        //   console.log(produit)
+        // }
+
+        // remettre le select lentille au choix par defaut
+      });
   
+  
+    localStorage.setItem('currentCamera', JSON.stringify(data));  //LOCAL STORAGE
+  });
+
+
+  function addMessErr(){
+    const messError = document.createElement('span');
+    messError.setAttribute("id", "error");  
+
+    return messError;
+  }
+
+      
+
  
 //function pour la description
 function addText(camera){
@@ -40,11 +94,22 @@ function addText(camera){
 }
 
 //function pour le select
-function addSelect(option){
-   const newSelect = document.createElement('select');
-   newSelect.setAttribute("id", "lenses");
+function addSelect(lenses){
+  const newSelect = document.createElement('select');
+  newSelect.setAttribute("id", "lenses");
+  
+  const defaultOption = document.createElement('option');
+  defaultOption.innerText = 'Choix de la lentille...';
+  defaultOption.value     = 0;
 
-   return newSelect;
+  newSelect.appendChild(defaultOption);
+
+  lenses.forEach(option => {
+
+    newSelect.appendChild(addOptionToSelect(option));
+  });
+
+  return newSelect;
 }
 
 //function pour les option
@@ -52,7 +117,6 @@ function addOptionToSelect(option) {
    /* Création de la balise option */
    const newOption = document.createElement('option');
   
-
    /* remplissage de la balise option */
    newOption.textContent = option;
    newOption.value = option;
@@ -72,45 +136,35 @@ function addElement(camera, descripText){
   const text = addText(camera);
   
   //ajout du select
-  const select = addSelect(camera);
+  const select = addSelect(camera.lenses);
 
-  //ajout des options pour les lentilles
-  const lense = addOptionToSelect(camera);
+  const messError = addMessErr();
 
+  // const basketButton = addButton();
   //ajout du bouton commander
   const basketButton = document.createElement("button");
-  basketButton.setAttribute("id", "basket_btn");
-
-
+  basketButton.setAttribute("id", "basketBtn");
   basketButton.innerText = "Commander";
 
-  
   containerLorem.appendChild(text);
   containerLorem.appendChild(select);
-  select.appendChild(lense);
-  containerLorem.appendChild(lensesSelect);
   containerLorem.appendChild(basketButton);
+  containerLorem.appendChild(messError);
 
   document.getElementById(descripText).appendChild(containerLorem);
 };
 
-//clique du bouton commander
-
-let cart = 0
-
-let btnAdd = document.querySelector('#basket_btn');
-
-let element = document.querySelector("#cart")
-element.innerText = cart
-
-btnAdd.addEventListener('click', function(){
-
-  cart++;
-  element.innerText = cart;
-  console.log(cart);
-})
 
 
+//verifier si une lentille est sélectionnée, soit la valeur de l'element select différente de 0
+//             //Si une lentille est sélectionnée alors :
+//                 //recuperer le panier
+//                 //recuperer la camera courante
+//                 //Affecter la lentille selectionnée dans l'objet camera
+//                 //enregistrer la camera dans le panier (le tableau)
+//                 //enregistrer le panier dans le localStorage
+//                 //mettre à jour l'affichage du nb article
+//             //Sinon message d'erreur invitant l'utilisateur à selectionner une lentille
 
 
 
