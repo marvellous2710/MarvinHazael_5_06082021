@@ -20,6 +20,7 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
     let element = document.querySelector("#cart");
     element.innerText = cart;
     let verifMess = document.getElementById("error");
+    let produit = JSON.parse(localStorage.getItem("currentItem"));
 
       addButton.addEventListener('click', () => {
 
@@ -32,13 +33,11 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
         } else{
           verifMess.textContent = "";//pour masquer le message d'erreur
           console.log('commandé !');
-         
+
+         produit = data.option;
         }
- 
-      
+
         
-        
-        let produit = JSON.parse(localStorage.getItem("currentItem"));
        //ajouter a produit(currentItem) la lentille selectionnée
         //recupere le panier avec getCart()
         //ajoute la nouvelle camera dans le panier avec la lentille (produit)
@@ -65,19 +64,20 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
       });
   
   
-    localStorage.setItem('currentCamera', JSON.stringify(data));  //LOCAL STORAGE
+    //localStorage.setItem('currentCamera', JSON.stringify(data));  //LOCAL STORAGE
   });
 
 
-  function addMessErr(){
-    const messError = document.createElement('span');
-    messError.setAttribute("id", "error");  
 
-    return messError;
-  }
+// function pour le message d'erreur
+function addMessErr(){
+  const messError = document.createElement('span');
+   messError.setAttribute("id", "error");  
+
+   return messError;
+}
 
       
-
  
 //function pour la description
 function addText(camera){
@@ -165,14 +165,3 @@ function addElement(camera, descripText){
 //                 //enregistrer le panier dans le localStorage
 //                 //mettre à jour l'affichage du nb article
 //             //Sinon message d'erreur invitant l'utilisateur à selectionner une lentille
-
-
-
-
-
-
-
-
-
-
-
