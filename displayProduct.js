@@ -45,10 +45,6 @@ function newProduct(camera){
        const containerProduct = document.createElement("div");
        containerProduct.classList.add("cardsProduct"); //c'est le container des cartes
        
-
-       //ajout du lien
-       //const link = addLink(camera);
-       
        //ajout des images
        const image = addImage(camera);
 

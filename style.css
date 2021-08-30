@@ -67,6 +67,7 @@ a{
 
 #descripText{
     padding-left: 20px;
+    padding-bottom: 10px;
     background-color: black;
     color: white;
     border-radius: 20px;
@@ -96,16 +97,18 @@ p{
 }
 
 #containerDetails .cardsProduct button{
-    margin-left: 450px;
+    margin-left: 40px;
     width: 250px;
     height: 50px;
     font-size: 20px;
     border-radius: 50px;
     border: none;
+    cursor: pointer;
 }
 
 #containerDetails .cardsProduct select{
     width: 250px;
     height: 50px;
     font-size: 20px;
+    cursor: pointer;
 }
