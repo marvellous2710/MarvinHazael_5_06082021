@@ -8,7 +8,6 @@ const idProduct = urlParams.get("id");
 fetch(`http://localhost:3000/api/cameras/` + idProduct)
   .then((res) => res.json())
   .then((data) => {
-    //enregistrer le produit recupéré dans le localStorage (currentItem)
     let productContainer = newProduct(data);
     document.getElementById('containerDetails').appendChild(productContainer);
     addElement(data, 'descripText');
@@ -17,29 +16,15 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
 
     const addButton = document.getElementById("basketBtn");
     const lenseAdd = document.getElementById("lenses");
-    let cart = 0;
-    let element = document.querySelector("#cart");
-    element.innerText = cart;
+    //let cart = 0;
+    //let element = document.querySelector("#cart");
+    //element.innerText = cart;
     let verifMess = document.getElementById("error");
-
     
+    displayArticlesNumber();
     //let produit = JSON.parse(localStorage.getItem("currentItem"));
+  
     
-    
-
-    //LOCAL STORAGE PANIER pour que le local storage soit égal au panier---------------->>>>>>>>>>>>>>>>>>>>>>
-      // const panier = () => {
-      //  let resultPanierDisplay = document.getElementById('cart');
-      //  let nbArticlePanier = JSON.parse(localStorage.getItem("currentItem"));
-      //  //let nbArticlePanier = localStorage.getItem('currentItem');  
-
-      //  nbArticlePanier++;
-      //  localStorage.setItem('currentItem', nbArticlePanier);
-      //  resultPanierDisplay.innerText = nbArticlePanier;
-      // }
-      // panier();
-
-      
 
       addButton.addEventListener('click', () => {
 
@@ -50,50 +35,27 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
 
           return;
         } else{
-          verifMess.textContent = "";//pour masquer le message d'erreur
+          verifMess.textContent = "";// masquer le message d'erreur
           console.log('commandé !');
-
-          let itemIndex;
-          if(localStorage.getItem("itemIndex") === null){
-             itemIndex = 0;
-          } else {
-             itemIndex = parseInt(localStorage.getItem("itemIndex"));
-            console.log(itemIndex);
-          }        
-
-
-          function addLentilles(){
-            let lentAdd = document.getElementById('lenses').value;           
-            localStorage.setItem("currentItem" + itemIndex, lentAdd);       
-          }       
-          addLentilles();
-
-          function addCamera(){                    
-            localStorage.setItem("cameraItem" + itemIndex, JSON.stringify(data));       
-          }       
-          addCamera();
-
-          itemIndex = itemIndex + 1;
-
-          localStorage.setItem("itemIndex", itemIndex);
+          let cart = getCart();
+          data.lenses = document.getElementById('lenses').value;
+          cart.push(data);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          //displayArticlesNumber();
+          console.log(cart.length);
+ 
         };
 
-        
-
-      
-        
-       //ajouter a produit(currentItem) la lentille selectionnée
-        //recupere le panier avec getCart()
-        //ajoute la nouvelle camera dans le panier avec la lentille (produit)
+       //ajouter a produit(currentItem) la lentille selectionnée OK
+        //recupere le panier avec getCart() OK
+        //ajoute la nouvelle camera dans le panier avec la lentille (produit)OK
         //mettre à jour le nbArticle en affichant la taille du panier
         //ne pas oublier de réenregistrer le panier dans le localStorage :)
        
 
         // remettre le select lentille au choix par defaut
       });
-  
-  
-    //localStorage.setItem('currentCamera', JSON.stringify(data));  //LOCAL STORAGE
+
   });
  
 
@@ -150,11 +112,8 @@ function addOptionToSelect(option) {
    newOption.textContent = option;
    newOption.value = option;
   
-
    return newOption;
 }
-
-
 
 
 function addElement(camera, descripText){
@@ -169,7 +128,6 @@ function addElement(camera, descripText){
 
   const messError = addMessErr();
 
-  // const basketButton = addButton();
   //ajout du bouton commander
   const basketButton = document.createElement("button");
   basketButton.setAttribute("id", "basketBtn");
@@ -182,15 +140,3 @@ function addElement(camera, descripText){
 
   document.getElementById(descripText).appendChild(containerLorem);
 };
-
-
-
-//verifier si une lentille est sélectionnée, soit la valeur de l'element select différente de 0
-//             //Si une lentille est sélectionnée alors :
-//                 //recuperer le panier
-//                 //recuperer la camera courante
-//                 //Affecter la lentille selectionnée dans l'objet camera
-//                 //enregistrer la camera dans le panier (le tableau)
-//                 //enregistrer le panier dans le localStorage
-//                 //mettre à jour l'affichage du nb article
-//             //Sinon message d'erreur invitant l'utilisateur à selectionner une lentille

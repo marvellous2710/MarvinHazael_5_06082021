@@ -5,31 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/d00343656d.js"
+      crossorigin="anonymous"
+    ></script>
     <title>ORINOCO - Cameras Vintage</title>
   </head>
   <body>
-   
-      <!-- NAVIGATION -->
-      <header>
-        <div class="header">
-          <div class="logo">
-            <a href="index.html"
-              ><img src="images/logo_orinoco.png" alt="Logo Orinoco" class="imgOrinoco"
-            /></a>
-          </div>
-          <nav class="basket">
-            <a href="basket.html">Panier</a>
-          </nav>
+    <!-- NAVIGATION -->
+    <header>
+      <div class="header">
+        <div class="logo">
+          <a href="index.html"
+            ><img
+              src="images/logo_orinoco.png"
+              alt="Logo Orinoco"
+              class="imgOrinoco"
+          /></a>
         </div>
-      </header>
+        <div class="logoCart">
+          <nav id="cart">
+          </nav>
+          <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+      </div>
+    </header>
 
+    <!-- CAMERA -->
+    <div id="container"></div>
 
-      <!-- CAMERA -->
-       <div id="container"></div>
-
-      
-
-       <script src="index.js"></script>
-       <script src="displayProduct.js"></script>   
+    <script src="index.js"></script>
+    <script src="displayProduct.js"></script>
+    <script src="utils.js"></script>
   </body>
 </html>

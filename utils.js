@@ -1,11 +1,19 @@
-// retourner un tableau
 function getCart() {
-    //si panier au dessus de zero alors...
-    //si dans localStorage j'ai un panier, alors je retourne le panier
-        //Ne pas oublier de convertir la chaine de caracteres récupérée JSON.parse
-    //sinon je retourne un tableau vide
+    let cart = localStorage.getItem("cart");
+    
+    if (cart === null) {
+        return [];
+    }
+
+    return JSON.parse(cart);
 }
 
-function displayAddedProductsNumber() {
-    
+function displayArticlesNumber() {
+    let cart = getCart();
+    //afficher le nombre d'articles
+    let element = document.querySelector("#cart");
+    localStorage.setItem('cart', JSON.stringify(cart));
+    element.innerText = cart.length;
 }
+
+
