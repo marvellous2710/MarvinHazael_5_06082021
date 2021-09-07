@@ -11,10 +11,12 @@ fetch("http://localhost:3000/api/cameras") //va chercher les infos de l'API
     throw Error;
 }) 
 .then(function(arrayProduct){
+    
     arrayProduct.forEach((camera) => {
         let productContainer = newProduct(camera);
         productContainer = addLink(camera._id, productContainer);
         document.getElementById('container').appendChild(productContainer);
+        
     });
     
     displayArticlesNumber();

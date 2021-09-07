@@ -113,14 +113,27 @@ p{
     width: 800px;
 }
 
+
 #containerDetails .cardsProduct button{
-    margin-left: 40px;
-    width: 250px;
-    height: 50px;
+    margin-left: 200px;
+    padding: 15px 25px;
     font-size: 20px;
-    border-radius: 50px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
+    box-shadow: 0 9px blueviolet;
+    background-color: blueviolet;
+    color: antiquewhite;
+}
+
+#containerDetails .cardsProduct button:hover{
+    transform: translateY(3px);
+    box-shadow: 0 6px blueviolet;
+}
+
+#containerDetails .cardsProduct button:active{
+    transform: translateY(7px);
+    box-shadow: 0 2px blueviolet;
 }
 
 #containerDetails .cardsProduct select{
@@ -128,4 +141,71 @@ p{
     height: 50px;
     font-size: 20px;
     cursor: pointer;
+}
+
+
+
+/* ------------CART ----------------*/
+
+article{
+    display: flex;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    background-color: orange;
+    color: white;
+    height: 200px;
+}
+
+article img{
+    border-radius: 50px 0 0 50px;
+    width: 300px;
+}
+
+.resum-cart{
+    margin-left: 20px;
+}
+
+
+
+/* -------------------FORMULAIRE--------------- */
+#sendForm{
+    background-color: orange;
+    text-align: center;
+    padding: 20px;
+    width: 500px;
+    border-radius: 50px;
+    margin: auto;
+}
+
+#sendForm input{
+    font-size: 30px;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 50px;
+    text-align: center;
+    border: solid 2px blueviolet;
+    color: white;
+}
+
+
+#sendForm button{
+    margin-bottom: 10px;
+    padding: 15px 25px;
+    font-size: 30px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 9px blueviolet;
+    background-color: blueviolet;
+    color: antiquewhite;
+}
+
+#sendForm button:hover{
+    transform: translateY(3px);
+    box-shadow: 0 6px blueviolet;
+}
+
+#sendForm button:active{
+    transform: translateY(7px);
+    box-shadow: 0 2px blueviolet;
 }

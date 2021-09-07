@@ -3,8 +3,6 @@ const urlParams = new URLSearchParams(window.location.search); //redirection ver
 const idProduct = urlParams.get("id");
 
 
-
-
 fetch(`http://localhost:3000/api/cameras/` + idProduct)
   .then((res) => res.json())
   .then((data) => {
@@ -16,13 +14,9 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
 
     const addButton = document.getElementById("basketBtn");
     const lenseAdd = document.getElementById("lenses");
-    //let cart = 0;
-    //let element = document.querySelector("#cart");
-    //element.innerText = cart;
     let verifMess = document.getElementById("error");
     
     displayArticlesNumber();
-    //let produit = JSON.parse(localStorage.getItem("currentItem"));
   
     
 
@@ -41,19 +35,10 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
           data.lenses = document.getElementById('lenses').value;
           cart.push(data);
           localStorage.setItem('cart', JSON.stringify(cart));
-          //displayArticlesNumber();
+ 
           console.log(cart.length);
  
         };
-
-       //ajouter a produit(currentItem) la lentille selectionnée OK
-        //recupere le panier avec getCart() OK
-        //ajoute la nouvelle camera dans le panier avec la lentille (produit)OK
-        //mettre à jour le nbArticle en affichant la taille du panier
-        //ne pas oublier de réenregistrer le panier dans le localStorage :)
-       
-
-        // remettre le select lentille au choix par defaut
       });
 
   });

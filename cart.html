@@ -21,8 +21,7 @@
             /></a>
           </div>
           <div class="logoCart">
-            <nav id="cart">
-             
+            <nav id="cart">            
             </nav>
             <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
           </div>
@@ -31,8 +30,41 @@
 
     <div id="basket"></div>
 
-    <script src="index.js"></script>
-    <script src="displayProduct.js"></script>
+
+    <form action="" method="POST" id="sendForm">
+      <div class="form-example">
+        <label for="lastName"></label>
+        <input type="text" name="pseudo" id="lastName" placeholder="Nom">
+      </div>
+      <div class="form-example">
+        <label for="firstName"></label>
+        <input type="text" name="pseudo" id="firstName" placeholder="Prénom">
+      </div>
+      <div class="form-example">
+        <label for="address"></label>
+        <input type="text" name="pseudo" id="address" placeholder="Adresse">
+      </div>
+      <div class="form-example">
+        <label for="zipCode"></label>
+        <input type="number" name="pseudo" id="zipCode" placeholder="Code postal">
+      </div>
+      <div class="form-example">
+        <label for="city"></label>
+        <input type="text" name="pseudo" id="city" placeholder="Ville">
+      </div>
+      <div class="form-example">
+        <label for="numTel"></label>
+        <input type="number" name="pseudo" id="numTel" placeholder="Téléphone">
+      </div>
+      <div class="form-example">
+        <label for="email"></label>
+        <input type="email" name="email" id="email" placeholder="Email">
+      </div>
+      <button>Commander</button>
+    </form>
+
     <script src="utils.js"></script>
+    <script src="displayProduct.js"></script>
+    <script src="cart.js"></script>
   </body>
 </html>
