@@ -59,16 +59,3 @@ function newProduct(camera){
     return containerProduct;
 };
 
-
-//             //verifier si une lentille est sélectionnée, soit la valeur de l'element select différente de 0
-//             //Si une lentille est sélectionnée alors :
-//                 //recuperer le panier
-//                 //recuperer la camera courante
-//                 //Affecter la lentille selectionnée dans l'objet camera
-//                 //enregistrer la camera dans le panier (le tableau)
-//                 //enregistrer le panier dans le localStorage
-//                 //mettre à jour l'affichage du nb article
-//             //Sinon message d'erreur invitant l'utilisateur à selectionner une lentille
-
-
-

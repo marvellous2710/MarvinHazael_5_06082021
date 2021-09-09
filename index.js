@@ -28,7 +28,6 @@ fetch("http://localhost:3000/api/cameras") //va chercher les infos de l'API
 
 
 function addLink (cameraId, container){
-
     const link = document.createElement("a");
     link.setAttribute("href", "details.html?id=" + cameraId);
     link.appendChild(container);

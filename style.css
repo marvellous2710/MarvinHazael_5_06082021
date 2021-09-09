@@ -169,6 +169,7 @@ article img{
 
 /* -------------------FORMULAIRE--------------- */
 #sendForm{
+    /* display: none; */
     background-color: orange;
     text-align: center;
     padding: 20px;
@@ -184,12 +185,14 @@ article img{
     border-radius: 50px;
     text-align: center;
     border: solid 2px blueviolet;
-    color: white;
+    color: black;
 }
 
 
-#sendForm button{
-    margin-bottom: 10px;
+#pushButton{
+    
+    display: block;
+    margin: 25px auto;
     padding: 15px 25px;
     font-size: 30px;
     border-radius: 50px;
@@ -200,12 +203,22 @@ article img{
     color: antiquewhite;
 }
 
-#sendForm button:hover{
+#pushButton:hover{
     transform: translateY(3px);
     box-shadow: 0 6px blueviolet;
 }
 
-#sendForm button:active{
+#pushButton:active{
     transform: translateY(7px);
     box-shadow: 0 2px blueviolet;
+}
+
+.emptyCard{
+    color: red;
+    font-size: 50px;
+    text-align: center;
+}
+
+small{
+    color: red;
 }
