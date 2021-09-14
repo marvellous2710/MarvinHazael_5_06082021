@@ -5,8 +5,14 @@ if (getCart() == 0){
     let emptyCart = document.createElement('p');
     emptyCart.setAttribute("class", "emptyCard");
     emptyCart.innerText = 'Panier vide';
-    console.log(emptyCart);
+    
     document.querySelector('#basket').appendChild(emptyCart);
+
+    let formUlar = document.getElementById("sendForm");
+    formUlar.style.display = "none";
+
+    let button = document.getElementById("pushButton");
+    button.style.display = "none";
 
 } else {
 
@@ -55,73 +61,134 @@ if (getCart() == 0){
 };
 
 
-// TELEPHONE
+
 
        
 
-// EMAIL
+// -------------REGEXP---------------//
 let form = document.querySelector('#sendForm');
 
-       form.email.addEventListener('change', function(){
-        validEmail(this);
-       });
+form.email.addEventListener('change', function(){
+validEmail(this);
+});
 
-       form.numTel.addEventListener('change', function(){
-        validTel(this);
-       });
+form.numTel.addEventListener('change', function(){
+validTel(this);
+});
 
-       form.city.addEventListener('change', function(){
-        validCity(this);
-       });
+form.city.addEventListener('change', function(){
+validCity(this);
+});
 
-       form.zipCode.addEventListener('change', function(){
-        validZipCode(this);
-       });
+form.zipcode.addEventListener('change', function(){
+validZipCode(this);
+});
+
+form.address.addEventListener('change', function(){
+validAdress(this);
+});
+
+form.firstName.addEventListener('change', function(){
+validFirstName(this);
+});
+
+form.lastName.addEventListener('change', function(){
+validName(this);
+ });
+
+       
 
 
 
-
-
-
-        const validZipCode = function(inputZipCode){
-        let zipCodeRegExp = new RegExp(
-            '^[0-9]{5}$', 'g'
+const validName = function(inputName){
+        let name = new RegExp(
+            '^[a-zA-Z-]{3,50}$', 'g'          
         );
 
-        let testZipCode = zipCodeRegExp.test(inputZipCode.value);
-        let errorMess = inputEmail.nextElementSibling; 
+        let testName = name.test(inputName.value);
+        let errorMess = inputName.nextElementSibling; 
 
-        if(testZipCode){
-         
+        if(testName){
+            errorMess.innerHTML = '';
         } else {
-             errorMess.innerHTML = 'Email non valide';
-             errorMess.classlist.add('text-danger');
+             errorMess.innerHTML = 'Nom non valide';
         }
 
-    };
+};
 
-       const validCity = function(inputCity){
+const validFirstName = function(inputFirstName){
+
+        let  firstName = new RegExp(
+             '^[a-zA-Z-]{3,50}$', 'g'
+        );
+
+        let testFirstName = firstName.test(inputFirstName.value);
+        let errorMess = inputFirstName.nextElementSibling; 
+
+        if(testFirstName){
+            errorMess.innerHTML = '';
+        } else {
+             errorMess.innerHTML = 'Prénom non valide';
+        }
+
+};
+
+
+const validAdress = function(inputAdress){
+        let adress = new RegExp(
+            '^[0-9]{2,5}+[a-zA-Z,-]{3,50}$', 'g'
+        );
+
+        let testAdress = adress.test(inputAdress.value);
+        let errorMess = inputAdress.nextElementSibling; 
+
+        if(testAdress){
+            errorMess.innerHTML = '';
+        } else {
+             errorMess.innerHTML = 'Adresse non valide';
+        }
+
+};
+
+
+const validZipCode = function(inputZipCode){
+            let zipCodeRegExp = new RegExp(
+                '^[0-9]{5}+[a-zA-Z-]{1,3}$', 'g'
+            );
+    
+            let testZipCode = zipCodeRegExp.test(inputZipCode.value);
+            let errorMess = inputZipCode.nextElementSibling; 
+    
+            if(testZipCode){
+                errorMess.innerHTML = '';
+            } else {
+                 errorMess.innerHTML = 'Email non valide';
+            }
+    
+};
+
+
+const validCity = function(inputCity){
         let cityRegExp = new RegExp(
-            '^[a-zA-Z-]$', 'g'
+            '^[a-zA-Z0-9-]{3,50}$', 'g'
         );
 
         let testCity = cityRegExp.test(inputCity.value);
         let errorMess = inputCity.nextElementSibling; 
 
          if(testCity){
-             
+            errorMess.innerHTML = '';
          } else {
              errorMess.innerHTML = 'Ville non valide';
-             errorMess.classlist.add('text-danger');
          }
 
-        };
+};
 
 
 
-       const validTel = function(inputTel){
+const validTel = function(inputTel){
         let telRegExp = new RegExp(
-            '^[0-9]{2}[0-9]{8}$', 'g'
+            '^[0]{1}[0-9]{9}$', 'g'
         );
 
         let testTel = telRegExp.test(inputTel.value);
@@ -129,17 +196,16 @@ let form = document.querySelector('#sendForm');
          let errorMess = inputTel.nextElementSibling; 
 
          if(testTel){
-             
+            errorMess.innerHTML = '';
          } else {
              errorMess.innerHTML = 'Téléphone non valide';
-             errorMess.classlist.add('text-danger');
          }
 
-        };
+};
     
-       const validEmail = function(inputEmail){
+const validEmail = function(inputEmail){
            let emailRegExp = new RegExp(
-               '^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g'
+               '^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-z]{2,5}$', 'g'
            );
 
            let testEmail = emailRegExp.test(inputEmail.value);
@@ -147,10 +213,25 @@ let form = document.querySelector('#sendForm');
             let errorMess = inputEmail.nextElementSibling; 
 
             if(testEmail){
-                
+                errorMess.innerHTML = '';
             } else {
-                errorMess.innerHTML = 'Email non valide';
-                errorMess.classlist.add('text-danger');
+                errorMess.innerHTML = 'Email non valide';               
             }
 
-       };
+};
+
+
+let validation = document.getElementById('pushButton');
+let lastName = document.getElementById('lastName');
+
+let nameError = document.querySelector('small');
+
+validation.addEventListener('click', function (e) {
+        if(lastName.value === ''){
+            e.preventDefault();
+            nameError.textContent = "Nom manquant";
+            nameError.style.color = "yellow";
+        }     
+});
+
+

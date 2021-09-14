@@ -16,7 +16,7 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
     const lenseAdd = document.getElementById("lenses");
     let verifMess = document.getElementById("error");
     
-    displayArticlesNumber();
+    
   
     
 
@@ -35,7 +35,9 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
           data.lenses = document.getElementById('lenses').value;
           cart.push(data);
           localStorage.setItem('cart', JSON.stringify(cart));
- 
+          
+          displayArticlesNumber();
+          
           console.log(cart.length);
  
         };
