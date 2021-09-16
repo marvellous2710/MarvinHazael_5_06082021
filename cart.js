@@ -1,4 +1,5 @@
 
+
 displayArticlesNumber();//pour afficher le nombre d'article dans le panier
 
 if (getCart() == 0){
@@ -68,33 +69,39 @@ if (getCart() == 0){
 // -------------REGEXP---------------//
 let form = document.querySelector('#sendForm');
 
-form.email.addEventListener('change', function(){
-validEmail(this);
-});
 
-form.numTel.addEventListener('change', function(){
-validTel(this);
-});
 
-form.city.addEventListener('change', function(){
-validCity(this);
-});
 
-form.zipcode.addEventListener('change', function(){
-validZipCode(this);
-});
+    form.email.addEventListener('change', function(){
+        validEmail(this);
+    });
+    
+    form.numTel.addEventListener('change', function(){
+        validTel(this);
+    });
+    
+    form.city.addEventListener('change', function(){
+        validCity(this);
+    });
+    
+    form.zipCode.addEventListener('change', function(){
+        validZipCode(this);
+    });
+    
+    form.address.addEventListener('change', function(){
+        validAdress(this);
+    });
+    
+    form.firstName.addEventListener('change', function(){
+        validFirstName(this);
+    });
+    
+    form.lastName.addEventListener('change', function(){
+        validName(this);
+    });
 
-form.address.addEventListener('change', function(){
-validAdress(this);
-});
 
-form.firstName.addEventListener('change', function(){
-validFirstName(this);
-});
 
-form.lastName.addEventListener('change', function(){
-validName(this);
- });
 
        
 
@@ -113,7 +120,6 @@ const validName = function(inputName){
         } else {
              errorMess.innerHTML = 'Nom non valide';
         }
-
 };
 
 const validFirstName = function(inputFirstName){
@@ -130,7 +136,6 @@ const validFirstName = function(inputFirstName){
         } else {
              errorMess.innerHTML = 'Prénom non valide';
         }
-
 };
 
 
@@ -147,7 +152,6 @@ const validAdress = function(inputAdress){
         } else {
              errorMess.innerHTML = 'Adresse non valide';
         }
-
 };
 
 
@@ -163,8 +167,7 @@ const validZipCode = function(inputZipCode){
                 errorMess.innerHTML = '';
             } else {
                  errorMess.innerHTML = 'Email non valide';
-            }
-    
+            }    
 };
 
 
@@ -180,8 +183,7 @@ const validCity = function(inputCity){
             errorMess.innerHTML = '';
          } else {
              errorMess.innerHTML = 'Ville non valide';
-         }
-
+         }     
 };
 
 
@@ -200,38 +202,80 @@ const validTel = function(inputTel){
          } else {
              errorMess.innerHTML = 'Téléphone non valide';
          }
-
 };
     
+
 const validEmail = function(inputEmail){
-           let emailRegExp = new RegExp(
-               '^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-z]{2,5}$', 'g'
-           );
+    let emailRegExp = new RegExp('^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-z]{2,5}$', 'g');
+    let inPut = emailRegExp.test(inputEmail.value);
+    let errorMess = inputEmail.nextElementSibling; 
+    let inputId = document.getElementById('email');
+    //let inputVide = document.getElementsByTagName('input');
 
-           let testEmail = emailRegExp.test(inputEmail.value);
-           console.log(testEmail);
-            let errorMess = inputEmail.nextElementSibling; 
-
-            if(testEmail){
-                errorMess.innerHTML = '';
-            } else {
-                errorMess.innerHTML = 'Email non valide';               
-            }
-
+    if(inPut){                
+        errorMess.textContent = '';                   
+    } else if(inputId.value === ''){               
+        errorMess.textContent = "Champ vide";
+        errorMess.style.color = "yellow";   
+    } else {                       
+        errorMess.textContent = 'Email non valide (Ex: aaa@aaa.com)';                               
+    }     
+  
+     
+    
 };
 
 
-let validation = document.getElementById('pushButton');
-let lastName = document.getElementById('lastName');
 
-let nameError = document.querySelector('small');
+// function validator() {
+//     sendButton.addEventListener('click', function (e) {
+//         if(inputId.value === ''){
+//         //if(inputPlace.value === ''){    
+//             e.preventDefault();
+//             messageError.textContent = "Champ vide";
+//             messageError.style.color = "yellow";   
+//         }     
+//     });
+// }
+let sendButton = document.getElementById('pushButton');
+let inputId = document.getElementsByTagName('input');
+let messageError = inputId.nextElementSibling; 
+//let messageError = document.querySelector('small');
 
-validation.addEventListener('click', function (e) {
-        if(lastName.value === ''){
-            e.preventDefault();
-            nameError.textContent = "Nom manquant";
-            nameError.style.color = "yellow";
-        }     
-});
+// sendButton.addEventListener('click', function (e) {
+
+//     let prenom = document.getElementById('firstName');
+
+//     if(!prenom.value){
+//         e.preventDefault();       
+//         messageError.textContent = "Vide";
+//     }else{
+//         e.preventDefault();
+//         alert('OK');
+//     }
+    
+    
+
+// });
+
+
+// let validation = document.getElementById('pushButton');
+// //let inputId = document.getElementById('email');
+// let inputPlace = document.querySelectorAll('input');
+    
+// //let messageError = document.querySelector('small');
+// let messageError = inputPlace.nextElementSibling; 
+
+// // //CA MARCHE
+// // validation.addEventListener('click', function (e) {
+// //         //if(inputPlace.value === ''){
+// //         if(inputId.value === ''){    
+// //             e.preventDefault();
+// //             messageError.textContent = "Champ vide";
+// //             messageError.style.color = "yellow";   
+// //         }     
+// // });
+// // //JUSQUE LA
+
 
 
