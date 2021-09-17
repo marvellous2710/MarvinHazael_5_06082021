@@ -222,3 +222,73 @@ article img{
 small{
     color: red;
 }
+
+
+
+@media all and (max-width: 1000px) {
+
+/*------------ DEBUT PAGE INDEX ---------------*/
+.header{
+    display: flex;
+    flex-direction: column;
+}
+
+.logoCart{
+    margin: 0;
+}
+
+#container{
+    flex-direction: column;
+}
+
+.cardsProduct{
+    width: 300px;
+}
+
+.cardsProduct img {
+    width: 300px;
+}
+
+.descript_text p {
+    margin: 0;
+}
+
+/*------------ FIN PAGE INDEX ---------------*/
+
+/*------------ DEBUT PAGE DETAILS ---------------*/
+
+#containerDetails .cardsProduct{
+    width: 300px;
+}
+
+#containerDetails .cardsProduct img {
+    width: 300px;
+}
+
+#containerDetails #basketBtn{
+    margin: 10px 0 10px 50px;
+}
+
+/*------------ FIN PAGE DETAILS ---------------*/
+
+/*------------ DEBUT PAGE PANIER ---------------*/
+
+article{
+    flex-direction: column;
+    height: 500px;
+}
+
+article img{
+    border-radius: 50px 50px 0 0;
+    width: 302px;
+}
+
+#sendForm{
+    width: 270px;
+}
+
+#sendForm input{
+    width: 250px;
+}
+/*------------ FIN PAGE PANIER ---------------*/
+}
