@@ -210,7 +210,7 @@ const validEmail = function(inputEmail){
     let inPut = emailRegExp.test(inputEmail.value);
     let errorMess = inputEmail.nextElementSibling; 
     let inputId = document.getElementById('email');
-    //let inputVide = document.getElementsByTagName('input');
+    //let inputEmpty = document.getElementsByTagName('input');
 
     if(inPut){                
         errorMess.textContent = '';                   
@@ -219,14 +219,28 @@ const validEmail = function(inputEmail){
         errorMess.style.color = "yellow";   
     } else {                       
         errorMess.textContent = 'Email non valide (Ex: aaa@aaa.com)';                               
-    }     
-  
-     
-    
+    }       
 };
 
+function validInput(input,regex,message){
+
+}
 
 
+let sendButton = document.getElementById('pushButton');
+let inputId = document.getElementsByTagName('input');
+let messageError = inputId.nextElementSibling; 
+
+sendButton.addEventListener('click', function (e) {
+    if (inputId.value === '') {
+       
+    } else {
+        
+        e.preventDefault();
+        messageError.textContent = "yoooooo";
+        messageError.style.color = "violet";
+    }
+});
 // function validator() {
 //     sendButton.addEventListener('click', function (e) {
 //         if(inputId.value === ''){
@@ -237,9 +251,9 @@ const validEmail = function(inputEmail){
 //         }     
 //     });
 // }
-let sendButton = document.getElementById('pushButton');
-let inputId = document.getElementsByTagName('input');
-let messageError = inputId.nextElementSibling; 
+
+
+
 //let messageError = document.querySelector('small');
 
 // sendButton.addEventListener('click', function (e) {
