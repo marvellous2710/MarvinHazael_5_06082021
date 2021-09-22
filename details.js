@@ -15,10 +15,6 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
     const addButton = document.getElementById("basketBtn");
     const lenseAdd = document.getElementById("lenses");
     let verifMess = document.getElementById("error");
-    
-    
-  
-    
 
       addButton.addEventListener('click', () => {
 
@@ -37,7 +33,7 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
           localStorage.setItem('cart', JSON.stringify(cart));
           
           displayArticlesNumber();
-          
+
           console.log(cart.length);
  
         };

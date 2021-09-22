@@ -186,6 +186,7 @@ article img{
     text-align: center;
     border: solid 2px blueviolet;
     color: black;
+    outline: none;
 }
 
 

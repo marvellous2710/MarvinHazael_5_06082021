@@ -16,3 +16,4 @@ function displayArticlesNumber() {
     let nbArticle = document.querySelector("#cart");
     nbArticle.innerText = cart.length;  
 }
+
