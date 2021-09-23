@@ -223,8 +223,13 @@ article img{
 small{
     color: red;
 }
+/* ------------------- FIN FORMULAIRE--------------- */
 
 
+/* -------------------REMERCIEMENT--------------- */
+#commmand, h1{
+    text-align: center;
+}
 
 @media all and (max-width: 1000px) {
 

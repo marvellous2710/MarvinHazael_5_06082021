@@ -1,7 +1,7 @@
 const contCam = document.getElementById("containerDetails");
 const urlParams = new URLSearchParams(window.location.search); //redirection vers autre page
 const idProduct = urlParams.get("id");
-
+displayArticlesNumber();
 
 fetch(`http://localhost:3000/api/cameras/` + idProduct)
   .then((res) => res.json())
@@ -21,12 +21,12 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
         if (lenseAdd.value == 0){
 
           verifMess.textContent = 'Merci de choisir une lentille';//afficher un message d'erreur 
-          console.log('not okay');
+          
 
           return;
         } else{
           verifMess.textContent = "";// masquer le message d'erreur
-          console.log('commandé !');
+          
           let cart = getCart();
           data.lenses = document.getElementById('lenses').value;
           cart.push(data);
@@ -72,7 +72,7 @@ function addSelect(lenses){
   const newSelect = document.createElement('select');
   newSelect.setAttribute("id", "lenses");
   
-  const defaultOption = document.createElement('option');
+  const defaultOption     = document.createElement('option');
   defaultOption.innerText = 'Choix de la lentille...';
   defaultOption.value     = 0;
 
@@ -93,7 +93,7 @@ function addOptionToSelect(option) {
   
    /* remplissage de la balise option */
    newOption.textContent = option;
-   newOption.value = option;
+   newOption.value       = option;
   
    return newOption;
 }
