@@ -143,12 +143,11 @@ localStorage.setItem("formValue", JSON.stringify(formValue));
 //FIN récupération des valeurs du formulaire
 
 
-    let isFormValid = formValid();
+let isFormValid = formValid();
 
     if(isFormValid){
-        location.href="command.html";
-        localStorage.clear();
-        console.log("Formulaire envoyé !");
+    location.href="command.html";
+     console.log("Formulaire envoyé !");
     }else{
         
         console.log("nononon");

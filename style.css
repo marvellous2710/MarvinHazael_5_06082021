@@ -231,6 +231,11 @@ small{
     text-align: center;
 }
 
+.elementPrice{
+    text-align: center;
+    font-size: 25px;
+}
+
 @media all and (max-width: 1000px) {
 
 /*------------ DEBUT PAGE INDEX ---------------*/
