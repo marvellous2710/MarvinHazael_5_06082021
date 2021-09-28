@@ -54,11 +54,29 @@ if (getCart() == 0){
         division.appendChild(description);
         division.appendChild(lenses);
         division.appendChild(prix);
-        card.appendChild(division);
-    
-    
+        card.appendChild(division); 
         
     });
+        // let cart = getCart();
+        // let totalPrice = [];
+
+
+        // //prendre le prix  dans le panier
+        // for (let i = 0; i < cart.length; i++){
+        //     let priceProduct = cart[i].price/100;
+        //     //mettre les prix trouvé dans totalPrice
+        //     totalPrice.push(priceProduct)  
+        // }
+
+        // // //addition des prix avec reducer qui accumule chaque valeur d'une lite comme une addition
+        // let reducer = (accumulator, currentValue) => accumulator + currentValue;
+        // let priceTotal = totalPrice.reduce(reducer);//comme dans la MDN
+        
+
+        // let total = document.createElement('p');
+        // total.innerText = "TOTAL : "+`${priceTotal}`+" €";// je veux TOTAL : ${total des prix trouvé dans le local storage}
+        // document.querySelector('#basket').appendChild(total);
+        // total.setAttribute("class", "total");
 };
 
 
@@ -191,43 +209,36 @@ sendButton.addEventListener('submit', e => {
 
 
     
-    // //récupération des valeurs du formulaire
+    
     let products  = [];
-     let contact = {    
-            Name      : document.getElementById("lastName").value,
-            FirstName : document.getElementById("firstName").value,
-            Adress    : document.getElementById("adress").value,
-            ZipCode   : document.getElementById("zipCode").value,
-            City      : document.getElementById("city").value,
-            Tel       : document.getElementById("numTel").value,
-            Email     : document.getElementById("email").value,       
+
+    let contact = {    
+            lastName  : document.getElementById("lastName").value,
+            firstName : document.getElementById("firstName").value,
+            address   : document.getElementById("adress").value,
+            zipCode   : document.getElementById("zipCode").value,
+            city      : document.getElementById("city").value,
+            tel       : document.getElementById("numTel").value,
+            email     : document.getElementById("email").value,       
     }
 
     for (let i = 0; i < cart.length; i++) {
         let productCart = cart[i];
-        product.push(productCart.id);
+        products.push(productCart.id);
     };
 
     let formValue = {contact, products};
 
+   
+   
 
     //mettre formValues dans le local storage
     localStorage.setItem("formValue", JSON.stringify(formValue));
 
-    // //mettre formValues dans le local storage
-    // localStorage.setItem("formValue", JSON.stringify(formValue));
-
-// ['ezjzefjfzoi', 'pzekofzepfkjfzepjfezp', ...]
-    //FIN récupération des valeurs du formulaire
-    // let sendServer = {
-    //     formValue,//les value du formulaire (nom,prénom,...)
-    //     localStorage,//la commande du panier      
-    // }
-    
-    //let isFormValid = formValid();
+ 
 
     if(isFormValid){
-        //location.href="command.html";
+        location.href="command.html";
         console.log("Formulaire envoyé !");
  
             fetch("http://localhost:3000/api/cameras/order", {
@@ -241,8 +252,40 @@ sendButton.addEventListener('submit', e => {
                 }   
                 throw Error;            
             })
-            .then(function(data){
-                console.log(data)
+            .then(function(formValue){
+
+            let cart = getCart();
+            let totalPrice = [];
+
+
+            //prendre le prix  dans le panier
+            for (let i = 0; i < cart.length; i++){
+                let priceProduct = cart[i].price/100;
+                //mettre les prix trouvé dans totalPrice
+                totalPrice.push(priceProduct)  
+            }
+
+            // //addition des prix avec reducer qui accumule chaque valeur d'une lite comme une addition
+            let reducer = (accumulator, currentValue) => accumulator + currentValue;
+            let priceTotal = totalPrice.reduce(reducer);//comme dans la MDN
+            
+
+            let total = document.createElement('p');
+            total.innerText = "TOTAL : "+`${priceTotal}`+" €";// je veux TOTAL : ${total des prix trouvé dans le local storage}
+            document.querySelector('#basket').appendChild(total);
+            total.setAttribute("class", "total");
+
+
+            let infoPageCommand = {
+                orderId: formValue.orderId,
+                priceTotal: priceTotal
+            }
+            console.log(infoPageCommand);
+
+            let commandLocalStorage = [];
+            commandLocalStorage.push(infoPageCommand);
+            localStorage.setItem("confirmCommand", JSON.stringify(commandLocalStorage));
+
             })
             .catch(function (error) {
                 console.log(error);

@@ -165,7 +165,15 @@ article img{
     margin-left: 20px;
 }
 
-
+.total{
+    background-color: orange;
+    color: white;
+    width: 200px;
+    height: 25x;
+    text-align: center;
+    border-radius: 50px;
+    float: right;
+}
 
 /* -------------------FORMULAIRE--------------- */
 #sendForm{
@@ -291,7 +299,7 @@ article{
 
 article img{
     border-radius: 50px 50px 0 0;
-    width: 302px;
+    width: 305px;
 }
 
 #sendForm{

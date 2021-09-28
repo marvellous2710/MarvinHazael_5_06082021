@@ -13,8 +13,8 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
 
 
     const addButton = document.getElementById("basketBtn");
-    const lenseAdd = document.getElementById("lenses");
-    let verifMess = document.getElementById("error");
+    const lenseAdd  = document.getElementById("lenses");
+    let verifMess   = document.getElementById("error");
 
       addButton.addEventListener('click', () => {
 
@@ -22,7 +22,6 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
 
           verifMess.textContent = 'Merci de choisir une lentille';//afficher un message d'erreur 
           
-
           return;
         } else{
           verifMess.textContent = "";// masquer le message d'erreur
