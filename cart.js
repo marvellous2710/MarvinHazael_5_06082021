@@ -90,19 +90,82 @@ function isValid(inputElement, regex) {
 
 
 
+
+    // let lastNameRegExp   = new RegExp('^[a-zA-Z -]{3,50}$');
+    // let firstNameRegExp  = new RegExp('^[a-zA-Z -]{3,50}$');
+    // let adressRegExp     = new RegExp('^[a-zA-Z0-9 -]{3,50}$');
+    // let zipCodeRegExp    = new RegExp('^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$');
+    // let cityRegExp       = new RegExp('^[a-zA-Z0-9 -]{3,50}$');
+    // let telRegExp        = new RegExp('^[0][0-9]{9}$');
+    // let emailRegExp      = new RegExp('^[a-z0-9._-]+@[a-z0-9]+\.[a-z]{2,5}$');
+
+    // let lastNameInput    = document.getElementById('lastName');
+    // let firstNameInput   = document.getElementById('firstName');
+    // let adressInput      = document.getElementById('adress');
+    // let zipCodeInput     = document.getElementById('zipCode');
+    // let cityInput        = document.getElementById('city');
+    // let numTelInput      = document.getElementById('numTel');
+    // let emailInput       = document.getElementById('email');
+
+    
+    
+    //récupération des valeurs du formulaire
+    // let products = [];
+ 
+    // let contact = {
+       
+    //         Name      : document.getElementById("lastName").value,
+    //         FirstName : document.getElementById("firstName").value,
+    //         Adress    : document.getElementById("adress").value,
+    //         ZipCode   : document.getElementById("zipCode").value,
+    //         City      : document.getElementById("city").value,
+    //         Tel       : document.getElementById("numTel").value,
+    //         Email     : document.getElementById("email").value,
+      
+    // };
+
+    // let formValue = {contact, products}
+    // let sendServer = {
+    //     formValue,//les value du formulaire (nom,prénom,...)
+    //     localStorage,//la commande du panier      
+    // }
+
+    //function fetchInos(){
+        // fetch("http://localhost:3000/api/cameras/order", {
+        //     method: "POST",
+        //     headers: { "Content-Type" : "application/json"},
+        //     body: JSON.stringify(formValue),
+        // })
+        // .then(function(res){
+        //     if (res.ok) {
+        //         return res.json();
+        //     }   
+        //     throw Error;            
+        // })
+        // .then(function(data){
+        //     console.log(data)
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
+    //}
+
+    
+
+
 let sendButton = document.getElementById('sendForm');
 
 sendButton.addEventListener('submit', e => {
     
     e.preventDefault();
 
-    let lastNameRegExp   = new RegExp('^[a-zA-Z- ]{3,50}$');
-    let firstNameRegExp  = new RegExp('^[a-zA-Z- ]{3,50}$');
-    let adressRegExp     = new RegExp('^[a-zA-Z0-9 ]{3,50}$');
+    let lastNameRegExp   = new RegExp('^[a-zA-Z -]{3,50}$');
+    let firstNameRegExp  = new RegExp('^[a-zA-Z -]{3,50}$');
+    let adressRegExp     = new RegExp('^[a-zA-Z0-9 -]{3,50}$');
     let zipCodeRegExp    = new RegExp('^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$');
-    let cityRegExp       = new RegExp('^[a-zA-Z0-9-]{3,50}$');
-    let telRegExp        = new RegExp('^[0]{1}[0-9]{9}$');
-    let emailRegExp      = new RegExp('^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9._-]+[.]{1}[a-z]{2,5}$');
+    let cityRegExp       = new RegExp('^[a-zA-Z0-9 -]{3,50}$');
+    let telRegExp        = new RegExp('^[0][0-9]{9}$');
+    let emailRegExp      = new RegExp('^[a-z0-9._-]+@[a-z0-9]+\.[a-z]{2,5}$');
 
     let lastNameInput    = document.getElementById('lastName');
     let firstNameInput   = document.getElementById('firstName');
@@ -113,41 +176,79 @@ sendButton.addEventListener('submit', e => {
     let emailInput       = document.getElementById('email');
 
     
-    function formValid(){
-        return isValid(lastNameInput, lastNameRegExp) 
-            && isValid(firstNameInput, firstNameRegExp) 
-            && isValid(adressInput, adressRegExp)
-            && isValid(zipCodeInput,zipCodeRegExp)
-            && isValid(cityInput, cityRegExp)
-            && isValid(numTelInput, telRegExp)
-            && isValid(emailInput, emailRegExp);  
+
+    //je place isFormValid ici pour qu'il soit actif uniquement au click !
+    let isFormValid = isValid(lastNameInput, lastNameRegExp);
+    isFormValid = isValid(firstNameInput, firstNameRegExp) && isFormValid;
+    isFormValid = isValid(adressInput, adressRegExp)       && isFormValid;
+    isFormValid = isValid(firstNameInput, firstNameRegExp) && isFormValid;
+    isFormValid = isValid(zipCodeInput,zipCodeRegExp)      && isFormValid;
+    isFormValid = isValid(cityInput, cityRegExp)           && isFormValid;
+    isFormValid = isValid(numTelInput, telRegExp)          && isFormValid;
+    isFormValid = isValid(emailInput, emailRegExp)         && isFormValid;
+
+
+
+
+    
+    // //récupération des valeurs du formulaire
+    let products  = [];
+     let contact = {    
+            Name      : document.getElementById("lastName").value,
+            FirstName : document.getElementById("firstName").value,
+            Adress    : document.getElementById("adress").value,
+            ZipCode   : document.getElementById("zipCode").value,
+            City      : document.getElementById("city").value,
+            Tel       : document.getElementById("numTel").value,
+            Email     : document.getElementById("email").value,       
     }
 
-//récupération des valeurs du formulaire
+    for (let i = 0; i < cart.length; i++) {
+        let productCart = cart[i];
+        product.push(productCart.id);
+    };
 
-const formValue = {
-    Name      : document.getElementById("lastName").value,
-    FirstName : document.getElementById("firstName").value,
-    Adress    : document.getElementById("adress").value,
-    ZipCode   : document.getElementById("zipCode").value,
-    City      : document.getElementById("city").value,
-    Tel       : document.getElementById("numTel").value,
-    Email     : document.getElementById("email").value,
-}
+    let formValue = {contact, products};
 
 
-//mettre formvalues dans le local storage
-localStorage.setItem("formValue", JSON.stringify(formValue));
+    //mettre formValues dans le local storage
+    localStorage.setItem("formValue", JSON.stringify(formValue));
 
+    // //mettre formValues dans le local storage
+    // localStorage.setItem("formValue", JSON.stringify(formValue));
 
-//FIN récupération des valeurs du formulaire
-
-
-let isFormValid = formValid();
+// ['ezjzefjfzoi', 'pzekofzepfkjfzepjfezp', ...]
+    //FIN récupération des valeurs du formulaire
+    // let sendServer = {
+    //     formValue,//les value du formulaire (nom,prénom,...)
+    //     localStorage,//la commande du panier      
+    // }
+    
+    //let isFormValid = formValid();
 
     if(isFormValid){
-    location.href="command.html";
-     console.log("Formulaire envoyé !");
+        //location.href="command.html";
+        console.log("Formulaire envoyé !");
+ 
+            fetch("http://localhost:3000/api/cameras/order", {
+                method: "POST",
+                headers: { "Content-Type" : "application/json"},
+                body: JSON.stringify(formValue),
+            })
+            .then(function(res){
+                if (res.ok) {
+                    return res.json();
+                }   
+                throw Error;            
+            })
+            .then(function(data){
+                console.log(data)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+  
+
     }else{
         
         console.log("nononon");
@@ -155,41 +256,3 @@ let isFormValid = formValid();
 
   
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /**
-     * Cours rapide sur les booleen
-     * 
-     * == / === 
-     * 1 == '1' => true mais 1 === '1' => faux parce que deux type différent
-     * 
-     * && => AND (et)
-     * || => OR (ou)
-     * 
-     * true && true => true
-     * true && false => false
-     * false && true => false
-     * false && false => false
-     * 
-     * true || true => true
-     * false || false => false
-     * true || false => true
-     * false || true => true
-     */
