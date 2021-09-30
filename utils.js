@@ -17,3 +17,15 @@ function displayArticlesNumber() {
     nbArticle.innerText = cart.length;  
 }
 
+
+function commandConfirm() {
+    let zigla = localStorage.getItem("confirmCommand");
+    
+    if (zigla === null) {
+        
+        return [];
+        
+    }
+
+    return JSON.parse(zigla);
+}

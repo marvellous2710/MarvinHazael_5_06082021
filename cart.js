@@ -211,6 +211,7 @@ sendButton.addEventListener('submit', e => {
     
     
     let products  = [];
+    
 
     let contact = {    
             lastName  : document.getElementById("lastName").value,
@@ -271,7 +272,7 @@ sendButton.addEventListener('submit', e => {
             
 
             let total = document.createElement('p');
-            total.innerText = "TOTAL : "+`${priceTotal}`+" €";// je veux TOTAL : ${total des prix trouvé dans le local storage}
+            total.innerText = "TOTAL : "+`${priceTotal}`+" €";
             document.querySelector('#basket').appendChild(total);
             total.setAttribute("class", "total");
 
@@ -285,6 +286,7 @@ sendButton.addEventListener('submit', e => {
             let commandLocalStorage = [];
             commandLocalStorage.push(infoPageCommand);
             localStorage.setItem("confirmCommand", JSON.stringify(commandLocalStorage));
+            
 
             })
             .catch(function (error) {
