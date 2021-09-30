@@ -1,5 +1,3 @@
-
-
 displayArticlesNumber();//pour afficher le nombre d'article dans le panier
 
 if (getCart() == 0){
@@ -57,26 +55,7 @@ if (getCart() == 0){
         card.appendChild(division); 
         
     });
-        // let cart = getCart();
-        // let totalPrice = [];
 
-
-        // //prendre le prix  dans le panier
-        // for (let i = 0; i < cart.length; i++){
-        //     let priceProduct = cart[i].price/100;
-        //     //mettre les prix trouvé dans totalPrice
-        //     totalPrice.push(priceProduct)  
-        // }
-
-        // // //addition des prix avec reducer qui accumule chaque valeur d'une lite comme une addition
-        // let reducer = (accumulator, currentValue) => accumulator + currentValue;
-        // let priceTotal = totalPrice.reduce(reducer);//comme dans la MDN
-        
-
-        // let total = document.createElement('p');
-        // total.innerText = "TOTAL : "+`${priceTotal}`+" €";// je veux TOTAL : ${total des prix trouvé dans le local storage}
-        // document.querySelector('#basket').appendChild(total);
-        // total.setAttribute("class", "total");
 };
 
 
@@ -105,70 +84,6 @@ function isValid(inputElement, regex) {
  
 };
 
-
-
-
-
-    // let lastNameRegExp   = new RegExp('^[a-zA-Z -]{3,50}$');
-    // let firstNameRegExp  = new RegExp('^[a-zA-Z -]{3,50}$');
-    // let adressRegExp     = new RegExp('^[a-zA-Z0-9 -]{3,50}$');
-    // let zipCodeRegExp    = new RegExp('^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$');
-    // let cityRegExp       = new RegExp('^[a-zA-Z0-9 -]{3,50}$');
-    // let telRegExp        = new RegExp('^[0][0-9]{9}$');
-    // let emailRegExp      = new RegExp('^[a-z0-9._-]+@[a-z0-9]+\.[a-z]{2,5}$');
-
-    // let lastNameInput    = document.getElementById('lastName');
-    // let firstNameInput   = document.getElementById('firstName');
-    // let adressInput      = document.getElementById('adress');
-    // let zipCodeInput     = document.getElementById('zipCode');
-    // let cityInput        = document.getElementById('city');
-    // let numTelInput      = document.getElementById('numTel');
-    // let emailInput       = document.getElementById('email');
-
-    
-    
-    //récupération des valeurs du formulaire
-    // let products = [];
- 
-    // let contact = {
-       
-    //         Name      : document.getElementById("lastName").value,
-    //         FirstName : document.getElementById("firstName").value,
-    //         Adress    : document.getElementById("adress").value,
-    //         ZipCode   : document.getElementById("zipCode").value,
-    //         City      : document.getElementById("city").value,
-    //         Tel       : document.getElementById("numTel").value,
-    //         Email     : document.getElementById("email").value,
-      
-    // };
-
-    // let formValue = {contact, products}
-    // let sendServer = {
-    //     formValue,//les value du formulaire (nom,prénom,...)
-    //     localStorage,//la commande du panier      
-    // }
-
-    //function fetchInos(){
-        // fetch("http://localhost:3000/api/cameras/order", {
-        //     method: "POST",
-        //     headers: { "Content-Type" : "application/json"},
-        //     body: JSON.stringify(formValue),
-        // })
-        // .then(function(res){
-        //     if (res.ok) {
-        //         return res.json();
-        //     }   
-        //     throw Error;            
-        // })
-        // .then(function(data){
-        //     console.log(data)
-        // })
-        // .catch(function (error) {
-        //     console.log(error);
-        // });
-    //}
-
-    
 
 
 let sendButton = document.getElementById('sendForm');
@@ -206,13 +121,7 @@ sendButton.addEventListener('submit', e => {
     isFormValid = isValid(emailInput, emailRegExp)         && isFormValid;
 
 
-
-
-    
-    
     let products  = [];
-    
-
     let contact = {    
             lastName  : document.getElementById("lastName").value,
             firstName : document.getElementById("firstName").value,
@@ -240,6 +149,7 @@ sendButton.addEventListener('submit', e => {
 
     if(isFormValid){
         location.href="command.html";
+        
         console.log("Formulaire envoyé !");
  
             fetch("http://localhost:3000/api/cameras/order", {
@@ -296,7 +206,7 @@ sendButton.addEventListener('submit', e => {
 
     }else{
         
-        console.log("nononon");
+        console.log(error);
     }
 
   

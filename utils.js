@@ -17,7 +17,7 @@ function displayArticlesNumber() {
     nbArticle.innerText = cart.length;  
 }
 
-
+//fonction pour afficher l'orderID 
 function commandConfirm() {
     let zigla = localStorage.getItem("confirmCommand");
     

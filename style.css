@@ -236,13 +236,40 @@ small{
 
 /* -------------------REMERCIEMENT--------------- */
 #commmand, h1{
+    padding: 20px;
     text-align: center;
+    background-color: orange;
+    color: whitesmoke;
+    border-radius: 50px;
+    
+    
+
 }
 
-.elementPrice{
-    text-align: center;
-    font-size: 25px;
+#backButton {  
+    display: block;
+    margin: 25px auto;
+    padding: 15px 25px;
+    font-size: 30px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 9px blueviolet;
+    background-color: blueviolet;
+    color: antiquewhite;
 }
+
+#backButton:hover{
+    transform: translateY(3px);
+    box-shadow: 0 6px blueviolet;
+}
+
+#backButton:active{
+    transform: translateY(7px);
+    box-shadow: 0 2px blueviolet;
+}
+
+
 
 @media all and (max-width: 1000px) {
 
