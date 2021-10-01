@@ -17,15 +17,16 @@ function displayArticlesNumber() {
     nbArticle.innerText = cart.length;  
 }
 
+
 //fonction pour afficher l'orderID 
 function commandConfirm() {
-    let zigla = localStorage.getItem("confirmCommand");
+    let conFirmation = localStorage.getItem("confirmCommand");
     
-    if (zigla === null) {
+    if (conFirmation === null) {
         
         return [];
         
     }
 
-    return JSON.parse(zigla);
+    return JSON.parse(conFirmation);
 }

@@ -1,4 +1,6 @@
+
 displayArticlesNumber();//pour afficher le nombre d'article dans le panier
+
 
 if (getCart() == 0){
     let emptyCart = document.createElement('p');
@@ -17,7 +19,9 @@ if (getCart() == 0){
 
      getCart().forEach(function(panier) {
         console.log(panier);
-    
+        
+        
+
         let card = document.createElement('article');
         document.querySelector('#basket').appendChild(card);
             
@@ -53,11 +57,33 @@ if (getCart() == 0){
         division.appendChild(lenses);
         division.appendChild(prix);
         card.appendChild(division); 
-        
+
+      
     });
 
 };
+//-------------------------TOTAL PANIER ----------------------------//
 
+let cart = getCart();
+let totalPrice = 0;
+
+let cartFinal= () => {
+    for (let i = 0; i < cart.length; i++){
+        let priceProduct = cart[i].price/100;
+      
+        totalPrice += priceProduct;
+    }; 
+};
+
+cartFinal();
+
+let total = document.createElement('p');
+total.innerText = "TOTAL : "+`${totalPrice}`+" €";
+document.querySelector('#basket').appendChild(total);
+total.setAttribute("class", "total");
+
+
+//--------------------FIN TOTAL PANIER -----------------------------//
 
 
 function isValid(inputElement, regex) {
@@ -137,10 +163,8 @@ sendButton.addEventListener('submit', e => {
         products.push(productCart.id);
     };
 
+    //je rassemble contact et products dans une meme variable
     let formValue = {contact, products};
-
-   
-   
 
     //mettre formValues dans le local storage
     localStorage.setItem("formValue", JSON.stringify(formValue));
@@ -149,8 +173,7 @@ sendButton.addEventListener('submit', e => {
 
     if(isFormValid){
         location.href="command.html";
-        
-        console.log("Formulaire envoyé !");
+       
  
             fetch("http://localhost:3000/api/cameras/order", {
                 method: "POST",
@@ -164,28 +187,6 @@ sendButton.addEventListener('submit', e => {
                 throw Error;            
             })
             .then(function(formValue){
-
-            let cart = getCart();
-            let totalPrice = [];
-
-
-            //prendre le prix  dans le panier
-            for (let i = 0; i < cart.length; i++){
-                let priceProduct = cart[i].price/100;
-                //mettre les prix trouvé dans totalPrice
-                totalPrice.push(priceProduct)  
-            }
-
-            // //addition des prix avec reducer qui accumule chaque valeur d'une lite comme une addition
-            let reducer = (accumulator, currentValue) => accumulator + currentValue;
-            let priceTotal = totalPrice.reduce(reducer);//comme dans la MDN
-            
-
-            let total = document.createElement('p');
-            total.innerText = "TOTAL : "+`${priceTotal}`+" €";
-            document.querySelector('#basket').appendChild(total);
-            total.setAttribute("class", "total");
-
 
             let infoPageCommand = {
                 orderId: formValue.orderId,
