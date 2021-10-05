@@ -241,9 +241,6 @@ small{
     background-color: orange;
     color: whitesmoke;
     border-radius: 50px;
-    
-    
-
 }
 
 #backButton {  
@@ -257,6 +254,8 @@ small{
     box-shadow: 0 9px blueviolet;
     background-color: blueviolet;
     color: antiquewhite;
+    width: 500px;
+    text-align: center;
 }
 
 #backButton:hover{

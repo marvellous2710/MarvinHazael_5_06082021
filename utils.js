@@ -4,7 +4,6 @@ function getCart() {
     if (cart === null) {
         
         return [];
-        
     }
 
     return JSON.parse(cart);
@@ -24,8 +23,7 @@ function commandConfirm() {
     
     if (conFirmation === null) {
         
-        return [];
-        
+        return [];      
     }
 
     return JSON.parse(conFirmation);

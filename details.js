@@ -4,16 +4,15 @@ const idProduct = urlParams.get("id");
 displayArticlesNumber();
 
 fetch(`http://localhost:3000/api/cameras/` + idProduct)
-  .then((res) => res.json())
+  .then((response) => response.json())
   .then((data) => {
     let productContainer = newProduct(data);
     document.getElementById('containerDetails').appendChild(productContainer);
     addElement(data, 'descripText');
-    console.log(data);
 
 
-    const addButton = document.getElementById("basketBtn");
-    const lenseAdd  = document.getElementById("lenses");
+    let addButton = document.getElementById("basketBtn");
+    let lenseAdd  = document.getElementById("lenses");
     let verifMess   = document.getElementById("error");
 
       addButton.addEventListener('click', () => {
@@ -44,7 +43,7 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
 
 // function pour le message d'erreur
 function addMessErr(){
-  const messError = document.createElement('span');
+  let messError = document.createElement('span');
    messError.setAttribute("id", "error");  
 
    return messError;
@@ -55,9 +54,9 @@ function addMessErr(){
 //function pour la description
 function addText(camera){
 
-  const divText = document.createElement("div");
+  let divText = document.createElement("div");
 
-  const productDetails = document.createElement("p");
+  let productDetails = document.createElement("p");
 
   productDetails.innerText = camera.description;
 
@@ -68,10 +67,10 @@ function addText(camera){
 
 //function pour le select
 function addSelect(lenses){
-  const newSelect = document.createElement('select');
+  let newSelect = document.createElement('select');
   newSelect.setAttribute("id", "lenses");
   
-  const defaultOption     = document.createElement('option');
+  let defaultOption     = document.createElement('option');
   defaultOption.innerText = 'Choix de la lentille...';
   defaultOption.value     = 0;
 

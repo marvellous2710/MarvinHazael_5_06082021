@@ -1,8 +1,8 @@
 
 displayArticlesNumber();//pour afficher le nombre d'article dans le panier
+let cart = getCart();
 
-
-if (getCart() == 0){
+if (cart.length === 0){
     let emptyCart = document.createElement('p');
     emptyCart.setAttribute("class", "emptyCard");
     emptyCart.innerText = 'Panier vide';
@@ -15,73 +15,72 @@ if (getCart() == 0){
     let button = document.getElementById("pushButton");
     button.style.display = "none";
 
+    let totalCommand = document.getElementsByClassName("total");
+    totalCommand.style.display = "none";
+
 } else {
 
-     getCart().forEach(function(panier) {
-        console.log(panier);
-        
-        
+    getCart().forEach(function(articleCart) {
 
         let card = document.createElement('article');
         document.querySelector('#basket').appendChild(card);
-            
-    
+              
         let division = document.createElement('div');
         document.querySelector('#basket').appendChild(division);
         division.setAttribute("class", "resum-cart");
     
         let image = document.createElement('img');
-        image.setAttribute("src", panier.imageUrl)
+        image.setAttribute("src", articleCart.imageUrl)
         document.querySelector('#basket').appendChild(image);
     
         let name = document.createElement('p');
-        name.textContent = panier.name;
+        name.textContent = articleCart.name;
         document.querySelector('#basket').appendChild(name);
     
         let description = document.createElement('p');
-        description.textContent = panier.description;
+        description.textContent = articleCart.description;
         document.querySelector('#basket').appendChild(description);
     
         let lenses = document.createElement('p');
-        lenses.textContent = panier.lenses;
+        lenses.textContent = articleCart.lenses;
         document.querySelector('#basket').appendChild(lenses);
     
         let prix = document.createElement('p');
-        prix.textContent = (panier.price/100).toFixed(2) + "€";
+        prix.textContent = (articleCart.price/100).toFixed(2) + "€";
         document.querySelector('#basket').appendChild(prix);
-    
-    
+     
         card.appendChild(image);
         division.appendChild(name);
         division.appendChild(description);
         division.appendChild(lenses);
         division.appendChild(prix);
-        card.appendChild(division); 
-
-      
+        card.appendChild(division);    
     });
-
 };
 //-------------------------TOTAL PANIER ----------------------------//
 
-let cart = getCart();
-let totalPrice = 0;
 
-let cartFinal= () => {
+let cartFinal = (cart) => {
+    let totalPrice = 0;
+
     for (let i = 0; i < cart.length; i++){
         let priceProduct = cart[i].price/100;
       
         totalPrice += priceProduct;
     }; 
+
+    return totalPrice;
 };
 
-cartFinal();
+let totalPrice = cartFinal(cart);
 
 let total = document.createElement('p');
 total.innerText = "TOTAL : "+`${totalPrice}`+" €";
 document.querySelector('#basket').appendChild(total);
 total.setAttribute("class", "total");
 
+//mettre le prix total dans le localstorage pour pouvoir le récupèrer dans la page de validation commande
+localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
 
 //--------------------FIN TOTAL PANIER -----------------------------//
 
@@ -89,20 +88,19 @@ total.setAttribute("class", "total");
 function isValid(inputElement, regex) {
     let messageContainer = inputElement.nextElementSibling;
 
-    if(inputElement.value === ''){    
+    if (inputElement.value === ''){    
                    
         messageContainer.textContent = "Champ vide";
         messageContainer.style.color = "red";   
 
         return false;
-    } else if(regex.test(inputElement.value) == false){ 
+    } else if (regex.test(inputElement.value) == false){ 
                               
         messageContainer.textContent = 'Non valide';  
         messageContainer.style.color = "red"; 
 
         return false;                            
     } else {
-
         messageContainer.textContent = "";
 
         return true;
@@ -137,18 +135,19 @@ sendButton.addEventListener('submit', e => {
     
 
     //je place isFormValid ici pour qu'il soit actif uniquement au click !
+    //boolean true false
     let isFormValid = isValid(lastNameInput, lastNameRegExp);
-    isFormValid = isValid(firstNameInput, firstNameRegExp) && isFormValid;
-    isFormValid = isValid(adressInput, adressRegExp)       && isFormValid;
-    isFormValid = isValid(firstNameInput, firstNameRegExp) && isFormValid;
-    isFormValid = isValid(zipCodeInput,zipCodeRegExp)      && isFormValid;
-    isFormValid = isValid(cityInput, cityRegExp)           && isFormValid;
-    isFormValid = isValid(numTelInput, telRegExp)          && isFormValid;
-    isFormValid = isValid(emailInput, emailRegExp)         && isFormValid;
+    isFormValid     = isValid(firstNameInput, firstNameRegExp) && isFormValid;
+    isFormValid     = isValid(adressInput, adressRegExp)       && isFormValid;
+    isFormValid     = isValid(firstNameInput, firstNameRegExp) && isFormValid;
+    isFormValid     = isValid(zipCodeInput,zipCodeRegExp)      && isFormValid;
+    isFormValid     = isValid(cityInput, cityRegExp)           && isFormValid;
+    isFormValid     = isValid(numTelInput, telRegExp)          && isFormValid;
+    isFormValid     = isValid(emailInput, emailRegExp)         && isFormValid;
 
 
     let products  = [];
-    let contact = {    
+    let contact   = {    
             lastName  : document.getElementById("lastName").value,
             firstName : document.getElementById("firstName").value,
             address   : document.getElementById("adress").value,
@@ -160,55 +159,50 @@ sendButton.addEventListener('submit', e => {
 
     for (let i = 0; i < cart.length; i++) {
         let productCart = cart[i];
-        products.push(productCart.id);
+        products.push(productCart._id);
     };
 
+
     //je rassemble contact et products dans une meme variable
-    let formValue = {contact, products};
+    let infoCommand = {contact, products};
 
-    //mettre formValues dans le local storage
-    localStorage.setItem("formValue", JSON.stringify(formValue));
-
- 
+    //mettre infoCommand dans le local storage
+    localStorage.setItem("infoCommand", JSON.stringify(infoCommand));
 
     if(isFormValid){
-        location.href="command.html";
        
- 
-            fetch("http://localhost:3000/api/cameras/order", {
-                method: "POST",
-                headers: { "Content-Type" : "application/json"},
-                body: JSON.stringify(formValue),
-            })
-            .then(function(res){
-                if (res.ok) {
-                    return res.json();
-                }   
-                throw Error;            
-            })
-            .then(function(formValue){
+        location.href="command.html";
+        
+        fetch("http://localhost:3000/api/cameras/order", {
+            method : "POST",
+            headers: { "Content-Type" : "application/json"},
+            body   : JSON.stringify(infoCommand),
+        })
+        .then(function(response){
+            if (response.ok) {
+                
+                return response.json();
+            }   
+            throw Error;            
+        })
+        .then(function(infoCommand){
 
             let infoPageCommand = {
-                orderId: formValue.orderId,
-                priceTotal: priceTotal
+                orderId: infoCommand.orderId,
             }
             console.log(infoPageCommand);
 
             let commandLocalStorage = [];
             commandLocalStorage.push(infoPageCommand);
             localStorage.setItem("confirmCommand", JSON.stringify(commandLocalStorage));
-            
 
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
   
-
-    }else{
-        
+    } else {       
         console.log(error);
     }
-
-  
 });
+

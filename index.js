@@ -1,13 +1,8 @@
-
-const containerCamera = document.getElementById("container");
-
-
 fetch("http://localhost:3000/api/cameras") //va chercher les infos de l'API
-.then(function(res){
-    if (res.ok) {
-        return res.json();//transforme en format JSON pour pouvoir les lire
+.then(function(response){
+    if (response.ok) {
+        return response.json();//transforme en format JSON pour pouvoir les lire
     }
-
     throw Error;
 }) 
 .then(function(arrayProduct){
@@ -15,8 +10,7 @@ fetch("http://localhost:3000/api/cameras") //va chercher les infos de l'API
     arrayProduct.forEach((camera) => {
         let productContainer = newProduct(camera);
         productContainer = addLink(camera._id, productContainer);
-        document.getElementById('container').appendChild(productContainer);
-        
+        document.getElementById('container').appendChild(productContainer);       
     });
     
     displayArticlesNumber();
@@ -26,7 +20,6 @@ fetch("http://localhost:3000/api/cameras") //va chercher les infos de l'API
 });
 
 
-
 function addLink (cameraId, container){
     const link = document.createElement("a");
     link.setAttribute("href", "details.html?id=" + cameraId);
@@ -34,5 +27,3 @@ function addLink (cameraId, container){
 
     return link;
 }
-
-
