@@ -8,6 +8,7 @@ if (cart.length !== 0){
     value.innerText = "Voici votre confirmation de commande Numéro  " +`${finalOrderId[0].orderId}`+" pour un prix total de : " +`${finalPrice}`+" €";
     document.getElementById('command').appendChild(value);
 
+    //création du lien vers la redirection index.html
     let comeBackButton = document.createElement("a");
     comeBackButton.setAttribute("href", "index.html");
     comeBackButton.setAttribute("id", "backButton");
