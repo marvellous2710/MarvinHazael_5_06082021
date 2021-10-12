@@ -166,13 +166,7 @@ sendButton.addEventListener('submit', e => {
     //je rassemble contact et products dans une meme variable
     let infoCommand = {contact, products};
 
-    //mettre infoCommand dans le local storage
-    localStorage.setItem("infoCommand", JSON.stringify(infoCommand));
-
     if(isFormValid){
-       
-        location.href="command.html";
-        
         fetch("http://localhost:3000/api/cameras/order", {
             method : "POST",
             headers: { "Content-Type" : "application/json"},
@@ -186,23 +180,23 @@ sendButton.addEventListener('submit', e => {
             throw Error;            
         })
         .then(function(infoCommand){
-
             let infoPageCommand = {
                 orderId: infoCommand.orderId,
             }
-            console.log(infoPageCommand);
+            
 
             let commandLocalStorage = [];
             commandLocalStorage.push(infoPageCommand);
             localStorage.setItem("confirmCommand", JSON.stringify(commandLocalStorage));
+            localStorage.setItem('orderId', infoCommand.orderId);
+            localStorage.setItem('orderData', JSON.stringify(infoCommand));
 
+            location.href="command.html";
         })
         .catch(function (error) {
             console.log(error);
         });
   
-    } else {       
-        console.log(error);
     }
 });
 

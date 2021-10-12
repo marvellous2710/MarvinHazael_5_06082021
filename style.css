@@ -83,6 +83,15 @@ a{
     padding: 5px;
 }
 
+@keyframes errorDisp {
+    from {
+      visibility: visible;
+    }
+    to {
+      visibility: hidden;
+    }
+}
+
 #descripText{
     padding-left: 20px;
     padding-bottom: 10px;

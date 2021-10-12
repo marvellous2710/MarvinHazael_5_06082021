@@ -23,17 +23,17 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
           
           return;
         } else{
-          verifMess.textContent = "";// masquer le message d'erreur
+          verifMess.textContent = "Produit ajouté au panier";
+          verifMess.style.color = "green";
+          verifMess.style.animation = "errorDisp 2s forwards";
+          //animation: errorDisp 4s forwards;
           
           let cart = getCart();
           data.lenses = document.getElementById('lenses').value;
           cart.push(data);
           localStorage.setItem('cart', JSON.stringify(cart));
           
-          displayArticlesNumber();
-
-          console.log(cart.length);
- 
+          displayArticlesNumber(); 
         };
       });
 
