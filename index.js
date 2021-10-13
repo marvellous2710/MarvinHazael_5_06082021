@@ -16,7 +16,9 @@ fetch("http://localhost:3000/api/cameras") //va chercher les infos de l'API
     displayArticlesNumber();
 }) 
 .catch(function(error){
-    console.log(error);
+    location.href="error.html";
+
+    return error;
 });
 
 

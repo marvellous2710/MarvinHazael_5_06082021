@@ -1,75 +1,33 @@
 let cart = getCart();
 let orderDatas = orderData();
 
-
-// if (cart.length !== 0){
-//     // recup localStorage data
-//     //clear le localStorage
-//     let value = document.createElement('h1');
-//     let finalOrderId = JSON.parse(localStorage.getItem("confirmCommand"));
-//     let finalPrice = localStorage.getItem("totalPrice");
-
-//     value.innerText = "Merci pour votre achat ! Voici votre confirmation de commande Numéro  " +`${finalOrderId[0].orderId}`+" pour un prix total de : " +`${finalPrice}`+" €";
-//     document.getElementById('command').appendChild(value);
-
-//     //création du lien vers la redirection index.html
-//     let comeBackButton = document.createElement("a");
-//     comeBackButton.setAttribute("href", "index.html");
-//     comeBackButton.setAttribute("id", "backButton");
-//     comeBackButton.innerText = "Revenir sur notre site";
-//     document.querySelector('#command').appendChild(comeBackButton);  
-
-//     //vider le localstorage
-//     localStorage.clear();
-
-// } else {
-//     let comeBackButton = document.createElement("a");
-//     comeBackButton.setAttribute("href", "index.html");
-//     comeBackButton.setAttribute("id", "backButton");
-//     comeBackButton.innerText = "Revenir sur notre site";
-//     document.querySelector('#command').appendChild(comeBackButton);  
-// }
+let redirectionButton = document.createElement("a");
+redirectionButton.setAttribute("href", "index.html");
+redirectionButton.setAttribute("id", "backButton");
+redirectionButton.innerText = "Revenir sur notre site";
+document.querySelector('#command').appendChild(redirectionButton);  
 
 
 if (orderDatas){
-    // recup localStorage data
-    //clear le localStorage
-    let value = document.createElement('h1');
+
+    let messageConfirmation = document.createElement('h1');
     let finalOrderId = JSON.parse(localStorage.getItem("confirmCommand"));
     let finalPrice = localStorage.getItem("totalPrice");
 
-    value.innerText = "Merci pour votre achat ! Voici votre confirmation de commande Numéro  " +`${finalOrderId[0].orderId}`+" pour un prix total de : " +`${finalPrice}`+" €";
-    document.getElementById('command').appendChild(value);
+    messageConfirmation.innerText = `Merci pour votre achat ! Voici votre confirmation de commande Numéro   ${finalOrderId[0].orderId} pour un prix total de :  ${finalPrice} €`;
 
-    //création du lien vers la redirection index.html
-    let comeBackButton = document.createElement("a");
-    comeBackButton.setAttribute("href", "index.html");
-    comeBackButton.setAttribute("id", "backButton");
-    comeBackButton.innerText = "Revenir sur notre site";
-    document.querySelector('#command').appendChild(comeBackButton);  
+    document.getElementById('command').appendChild(messageConfirmation);
 
     //vider le localstorage
     localStorage.clear();
-
-} else {
-    let comeBackButton = document.createElement("a");
-    comeBackButton.setAttribute("href", "index.html");
-    comeBackButton.setAttribute("id", "backButton");
-    comeBackButton.innerText = "Revenir sur notre site";
-    document.querySelector('#command').appendChild(comeBackButton);  
 }
 
 
-
-
-  
 function orderData(){
     let orderDatas = localStorage.getItem("orderData");
     
-    if (orderDatas === null) {
-        
+    if (orderDatas === null) {      
         return [];
     }
-
     return JSON.parse(orderDatas);
 }

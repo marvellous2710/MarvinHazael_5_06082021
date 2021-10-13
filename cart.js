@@ -75,7 +75,8 @@ let cartFinal = (cart) => {
 let totalPrice = cartFinal(cart);
 
 let total = document.createElement('p');
-total.innerText = "TOTAL : "+`${totalPrice}`+" €";
+// total.innerText = "TOTAL : "+`${totalPrice}`+" €";
+total.innerText = `TOTAL : ${totalPrice} €`;
 document.querySelector('#basket').appendChild(total);
 total.setAttribute("class", "total");
 
@@ -148,13 +149,13 @@ sendButton.addEventListener('submit', e => {
 
     let products  = [];
     let contact   = {    
-            lastName  : document.getElementById("lastName").value,
-            firstName : document.getElementById("firstName").value,
-            address   : document.getElementById("adress").value,
-            zipCode   : document.getElementById("zipCode").value,
-            city      : document.getElementById("city").value,
-            tel       : document.getElementById("numTel").value,
-            email     : document.getElementById("email").value,       
+        lastName  : document.getElementById("lastName").value,
+        firstName : document.getElementById("firstName").value,
+        address   : document.getElementById("adress").value,
+        zipCode   : document.getElementById("zipCode").value,
+        city      : document.getElementById("city").value,
+        tel       : document.getElementById("numTel").value,
+        email     : document.getElementById("email").value,       
     }
 
     for (let i = 0; i < cart.length; i++) {
@@ -193,8 +194,11 @@ sendButton.addEventListener('submit', e => {
 
             location.href="command.html";
         })
-        .catch(function (error) {
-            console.log(error);
+
+        .catch(function(error){
+            location.href="error.html";
+        
+            return error;
         });
   
     }

@@ -10,10 +10,9 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
     document.getElementById('containerDetails').appendChild(productContainer);
     addElement(data, 'descripText');
 
-
     let addButton = document.getElementById("basketBtn");
     let lenseAdd  = document.getElementById("lenses");
-    let verifMess   = document.getElementById("error");
+    let verifMess = document.getElementById("error");
 
       addButton.addEventListener('click', () => {
 
@@ -23,10 +22,9 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
           
           return;
         } else{
-          verifMess.textContent = "Produit ajouté au panier";
-          verifMess.style.color = "green";
+          verifMess.textContent     = "Produit ajouté au panier";
+          verifMess.style.color     = "green";
           verifMess.style.animation = "errorDisp 2s forwards";
-          //animation: errorDisp 4s forwards;
           
           let cart = getCart();
           data.lenses = document.getElementById('lenses').value;
@@ -70,7 +68,7 @@ function addSelect(lenses){
   let newSelect = document.createElement('select');
   newSelect.setAttribute("id", "lenses");
   
-  let defaultOption     = document.createElement('option');
+  let defaultOption       = document.createElement('option');
   defaultOption.innerText = 'Choix de la lentille...';
   defaultOption.value     = 0;
 
