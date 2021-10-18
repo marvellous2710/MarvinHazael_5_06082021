@@ -15,16 +15,3 @@ function displayArticlesNumber() {
     let nbArticle = document.querySelector("#cart");
     nbArticle.innerText = cart.length;  
 }
-
-
-//fonction pour afficher l'orderID 
-function commandConfirm() {
-    let conFirmation = localStorage.getItem("confirmCommand");
-    
-    if (conFirmation === null) {
-        
-        return [];      
-    }
-
-    return JSON.parse(conFirmation);
-}

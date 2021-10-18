@@ -1,4 +1,4 @@
-let cart = getCart();
+let cart       = getCart();
 let orderDatas = orderData();
 
 let redirectionButton = document.createElement("a");

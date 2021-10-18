@@ -1,4 +1,3 @@
-const contCam = document.getElementById("containerDetails");
 const urlParams = new URLSearchParams(window.location.search); //redirection vers autre page
 const idProduct = urlParams.get("id");
 displayArticlesNumber();
@@ -8,20 +7,21 @@ fetch(`http://localhost:3000/api/cameras/` + idProduct)
   .then((data) => {
     let productContainer = newProduct(data);
     document.getElementById('containerDetails').appendChild(productContainer);
-    addElement(data, 'descripText');
+    addDetailsElement(data, 'descripText');
 
     let addButton = document.getElementById("basketBtn");
-    let lenseAdd  = document.getElementById("lenses");
-    let verifMess = document.getElementById("error");
+    
 
       addButton.addEventListener('click', () => {
+        let lenseAdd  = document.getElementById("lenses");
+        let verifMess = document.getElementById("error");
 
         if (lenseAdd.value == 0){
 
           verifMess.textContent = 'Merci de choisir une lentille';//afficher un message d'erreur 
           
           return;
-        } else{
+        } else {
           verifMess.textContent     = "Produit ajouté au panier";
           verifMess.style.color     = "green";
           verifMess.style.animation = "errorDisp 2s forwards";
@@ -46,8 +46,7 @@ function addMessErr(){
 
    return messError;
 }
-
-      
+  
  
 //function pour la description
 function addText(camera){
@@ -95,7 +94,7 @@ function addOptionToSelect(option) {
 }
 
 
-function addElement(camera, descripText){
+function addDetailsElement(camera, descripText){
 
   const containerLorem = document.createElement("div");//div container
   
@@ -110,7 +109,7 @@ function addElement(camera, descripText){
   //ajout du bouton commander
   const basketButton = document.createElement("button");
   basketButton.setAttribute("id", "basketBtn");
-  basketButton.innerText = "Commander";
+  basketButton.innerText = "Ajouter au panier";
 
   containerLorem.appendChild(text);
   containerLorem.appendChild(select);

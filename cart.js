@@ -1,5 +1,29 @@
-
 displayArticlesNumber();//pour afficher le nombre d'article dans le panier
+
+function isValid(inputElement, regex) {
+    let messageContainer = inputElement.nextElementSibling;
+
+    if (inputElement.value === ''){    
+                   
+        messageContainer.textContent = "Champ vide";
+        messageContainer.style.color = "red";   
+
+        return false;
+    } else if (regex.test(inputElement.value) == false){ 
+                              
+        messageContainer.textContent = 'Non valide';  
+        messageContainer.style.color = "red"; 
+
+        return false;                            
+    } else {
+        messageContainer.textContent = "";
+
+        return true;
+    }
+ 
+};
+
+
 let cart = getCart();
 
 if (cart.length === 0){
@@ -14,13 +38,9 @@ if (cart.length === 0){
 
     let button = document.getElementById("pushButton");
     button.style.display = "none";
-
-    let totalCommand = document.getElementsByClassName("total");
-    totalCommand.style.display = "none";
-
-} else {
-
-    getCart().forEach(function(articleCart) {
+} 
+else {
+    cart.forEach(function(articleCart) {
 
         let card = document.createElement('article');
         document.querySelector('#basket').appendChild(card);
@@ -54,62 +74,33 @@ if (cart.length === 0){
         division.appendChild(description);
         division.appendChild(lenses);
         division.appendChild(prix);
-        card.appendChild(division);    
+        card.appendChild(division);       
     });
-};
-//-------------------------TOTAL PANIER ----------------------------//
 
-
-let cartFinal = (cart) => {
-    let totalPrice = 0;
-
-    for (let i = 0; i < cart.length; i++){
-        let priceProduct = cart[i].price/100;
-      
-        totalPrice += priceProduct;
-    }; 
-
-    return totalPrice;
-};
-
-let totalPrice = cartFinal(cart);
-
-let total = document.createElement('p');
-// total.innerText = "TOTAL : "+`${totalPrice}`+" €";
-total.innerText = `TOTAL : ${totalPrice} €`;
-document.querySelector('#basket').appendChild(total);
-total.setAttribute("class", "total");
-
-//mettre le prix total dans le localstorage pour pouvoir le récupèrer dans la page de validation commande
-localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
-
-//--------------------FIN TOTAL PANIER -----------------------------//
-
-
-function isValid(inputElement, regex) {
-    let messageContainer = inputElement.nextElementSibling;
-
-    if (inputElement.value === ''){    
-                   
-        messageContainer.textContent = "Champ vide";
-        messageContainer.style.color = "red";   
-
-        return false;
-    } else if (regex.test(inputElement.value) == false){ 
-                              
-        messageContainer.textContent = 'Non valide';  
-        messageContainer.style.color = "red"; 
-
-        return false;                            
-    } else {
-        messageContainer.textContent = "";
-
-        return true;
-    }
- 
-};
-
-
+    let calculateTotalPrice = (cart) => {
+        let totalPrice = 0;
+    
+        for (let i = 0; i < cart.length; i++){
+            let priceProduct = cart[i].price;
+          
+            totalPrice += priceProduct;
+        }; 
+    
+        return totalPrice/100;
+    };
+    
+    let totalPrice = calculateTotalPrice(cart);
+    
+    let total = document.createElement('p');
+    total.innerText = `TOTAL : ${totalPrice} €`;
+    document.querySelector('#basket').appendChild(total);
+    total.setAttribute("class", "total");
+    
+    //mettre le prix total dans le localstorage pour pouvoir le récupèrer dans la page de validation commande
+    localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+    
+    //--------------------FIN TOTAL PANIER -----------------------------//
+}
 
 let sendButton = document.getElementById('sendForm');
 
@@ -178,6 +169,7 @@ sendButton.addEventListener('submit', e => {
                 
                 return response.json();
             }   
+            
             throw Error;            
         })
         .then(function(infoCommand){
@@ -189,7 +181,7 @@ sendButton.addEventListener('submit', e => {
             let commandLocalStorage = [];
             commandLocalStorage.push(infoPageCommand);
             localStorage.setItem("confirmCommand", JSON.stringify(commandLocalStorage));
-            localStorage.setItem('orderId', infoCommand.orderId);
+            //localStorage.setItem('orderId', infoCommand.orderId);
             localStorage.setItem('orderData', JSON.stringify(infoCommand));
 
             location.href="command.html";
@@ -203,4 +195,3 @@ sendButton.addEventListener('submit', e => {
   
     }
 });
-

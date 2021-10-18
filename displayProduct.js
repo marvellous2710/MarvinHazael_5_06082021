@@ -1,5 +1,4 @@
-// // fonction pour ajouter les images
-
+// fonction pour ajouter les images
 function addImage(camera){
 
     const imageFigureCamera = document.createElement("figure"); 
@@ -12,8 +11,7 @@ function addImage(camera){
     return imageFigureCamera;
 }
 
-// //div description
-
+//div description
 function addDescription(camera){
 
     const divDescription = document.createElement("div");
@@ -37,7 +35,6 @@ function addDescription(camera){
 
 
 // FONCTION POUR APPELER LES PRODUITS
-
 function newProduct(camera){
   
 

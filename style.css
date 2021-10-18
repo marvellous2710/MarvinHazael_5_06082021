@@ -296,20 +296,15 @@ small{
 
 
 
-@media all and (max-width: 1000px) {
+@media all and (max-width: 1050px) {
 
 /*------------ DEBUT PAGE INDEX ---------------*/
 .header{
     display: flex;
-    flex-direction: column;
-}
-
-.logoCart{
-    margin: 0;
 }
 
 #container{
-    flex-direction: column;
+    margin: 30px;
 }
 
 .cardsProduct{
@@ -347,14 +342,20 @@ small{
 article{
     flex-direction: column;
     height: 500px;
+    width: 360px;
 }
 
 article img{
     border-radius: 50px 50px 0 0;
-    width: 305px;
+    width: 360px;
+}
+
+.total{
+    margin-right: 75px;
 }
 
 #sendForm{
+    margin-top: 80px;
     width: 270px;
 }
 
@@ -362,4 +363,13 @@ article img{
     width: 250px;
 }
 /*------------ FIN PAGE PANIER ---------------*/
+}
+
+@media all and (min-width: 1050px) {
+
+.basket{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 }
