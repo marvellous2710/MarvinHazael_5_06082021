@@ -175,14 +175,6 @@ sendButton.addEventListener('submit', e => {
             throw Error;
         })
         .then(function(infoCommand){
-            let infoPageCommand = {
-                orderId: infoCommand.orderId,
-            }
-
-
-            let commandLocalStorage = [];
-            commandLocalStorage.push(infoPageCommand);
-            localStorage.setItem("confirmCommand", JSON.stringify(commandLocalStorage));
             localStorage.setItem('orderData', JSON.stringify(infoCommand));
 
             location.href="command.html";

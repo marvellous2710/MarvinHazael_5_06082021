@@ -11,16 +11,15 @@ document.querySelector('#command').appendChild(redirectionButton);
 if (orderDatas){
 
     let messageConfirmation = document.createElement('h1');
-    let finalOrderId        = JSON.parse(localStorage.getItem("confirmCommand"));
     let finalPrice          = JSON.parse(localStorage.getItem("totalPrice"));
     let orderData           = JSON.parse(localStorage.getItem("orderData"));
 
-    messageConfirmation.innerText = `Merci pour votre achat ${orderData.contact.lastName} ${orderData.contact.firstName} ! Voici votre confirmation de commande Numéro   ${finalOrderId[0].orderId} pour un prix total de :  ${finalPrice} € livraison prévu au ${orderData.contact.address} ${orderData.contact.zipCode} ${orderData.contact.city}`;
+    messageConfirmation.innerText = `Merci pour votre achat ${orderData.contact.lastName} ${orderData.contact.firstName} ! Voici votre confirmation de commande Numéro   ${orderData.orderId} pour un prix total de :  ${finalPrice} € livraison prévu au ${orderData.contact.address} ${orderData.contact.zipCode} ${orderData.contact.city}`;
 
     document.getElementById('command').appendChild(messageConfirmation);
 
     //vider le localstorage
-    //localStorage.clear();
+    localStorage.clear();
 }
 
 
