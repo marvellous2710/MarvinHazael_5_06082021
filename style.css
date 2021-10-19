@@ -296,7 +296,7 @@ small{
 
 
 
-@media all and (max-width: 1050px) {
+@media all and (max-width: 800px) {
 
 /*------------ DEBUT PAGE INDEX ---------------*/
 .header{
@@ -365,11 +365,27 @@ article img{
 /*------------ FIN PAGE PANIER ---------------*/
 }
 
-@media all and (min-width: 1050px) {
+@media all and (max-width: 1050px) {
 
-.basket{
+#basket{
     display: flex;
     flex-wrap: wrap;
+}
+
+article{
+    margin: 5px;
+}
+
+.total{
+    margin: 80px;
+}
+
+#sendForm{
+    width: auto;
+}
+
+#sendForm input{
+    width: auto;
 }
 
 }

@@ -3,25 +3,26 @@ displayArticlesNumber();//pour afficher le nombre d'article dans le panier
 function isValid(inputElement, regex) {
     let messageContainer = inputElement.nextElementSibling;
 
-    if (inputElement.value === ''){    
-                   
+    if (inputElement.value === ''){
+
         messageContainer.textContent = "Champ vide";
-        messageContainer.style.color = "red";   
+        messageContainer.style.color = "red";
 
         return false;
-    } else if (regex.test(inputElement.value) == false){ 
-                              
-        messageContainer.textContent = 'Non valide';  
-        messageContainer.style.color = "red"; 
+    } else if (regex.test(inputElement.value) == false){
 
-        return false;                            
+        messageContainer.textContent = 'Non valide';
+        messageContainer.style.color = "red";
+
+        return false;
     } else {
         messageContainer.textContent = "";
 
         return true;
     }
- 
+
 };
+
 
 
 let cart = getCart();
@@ -30,7 +31,7 @@ if (cart.length === 0){
     let emptyCart = document.createElement('p');
     emptyCart.setAttribute("class", "emptyCard");
     emptyCart.innerText = 'Panier vide';
-    
+
     document.querySelector('#basket').appendChild(emptyCart);
 
     let formUlar = document.getElementById("sendForm");
@@ -38,74 +39,74 @@ if (cart.length === 0){
 
     let button = document.getElementById("pushButton");
     button.style.display = "none";
-} 
+}
 else {
     cart.forEach(function(articleCart) {
 
         let card = document.createElement('article');
         document.querySelector('#basket').appendChild(card);
-              
+
         let division = document.createElement('div');
         document.querySelector('#basket').appendChild(division);
         division.setAttribute("class", "resum-cart");
-    
+
         let image = document.createElement('img');
         image.setAttribute("src", articleCart.imageUrl)
         document.querySelector('#basket').appendChild(image);
-    
+
         let name = document.createElement('p');
         name.textContent = articleCart.name;
         document.querySelector('#basket').appendChild(name);
-    
+
         let description = document.createElement('p');
         description.textContent = articleCart.description;
         document.querySelector('#basket').appendChild(description);
-    
+
         let lenses = document.createElement('p');
         lenses.textContent = articleCart.lenses;
         document.querySelector('#basket').appendChild(lenses);
-    
+
         let prix = document.createElement('p');
         prix.textContent = (articleCart.price/100).toFixed(2) + "€";
         document.querySelector('#basket').appendChild(prix);
-     
+
         card.appendChild(image);
         division.appendChild(name);
         division.appendChild(description);
         division.appendChild(lenses);
         division.appendChild(prix);
-        card.appendChild(division);       
+        card.appendChild(division);
     });
 
     let calculateTotalPrice = (cart) => {
         let totalPrice = 0;
-    
+
         for (let i = 0; i < cart.length; i++){
             let priceProduct = cart[i].price;
-          
+
             totalPrice += priceProduct;
-        }; 
-    
+        };
+
         return totalPrice/100;
     };
-    
+
     let totalPrice = calculateTotalPrice(cart);
-    
+
     let total = document.createElement('p');
     total.innerText = `TOTAL : ${totalPrice} €`;
     document.querySelector('#basket').appendChild(total);
     total.setAttribute("class", "total");
-    
+
     //mettre le prix total dans le localstorage pour pouvoir le récupèrer dans la page de validation commande
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
-    
+
     //--------------------FIN TOTAL PANIER -----------------------------//
 }
 
 let sendButton = document.getElementById('sendForm');
 
 sendButton.addEventListener('submit', e => {
-    
+
     e.preventDefault();
 
     let lastNameRegExp   = new RegExp('^[a-zA-Z -]{3,50}$');
@@ -124,7 +125,7 @@ sendButton.addEventListener('submit', e => {
     let numTelInput      = document.getElementById('numTel');
     let emailInput       = document.getElementById('email');
 
-    
+
 
     //je place isFormValid ici pour qu'il soit actif uniquement au click !
     //boolean true false
@@ -139,14 +140,14 @@ sendButton.addEventListener('submit', e => {
 
 
     let products  = [];
-    let contact   = {    
+    let contact   = {
         lastName  : document.getElementById("lastName").value,
         firstName : document.getElementById("firstName").value,
         address   : document.getElementById("adress").value,
         zipCode   : document.getElementById("zipCode").value,
         city      : document.getElementById("city").value,
         tel       : document.getElementById("numTel").value,
-        email     : document.getElementById("email").value,       
+        email     : document.getElementById("email").value,
     }
 
     for (let i = 0; i < cart.length; i++) {
@@ -166,17 +167,17 @@ sendButton.addEventListener('submit', e => {
         })
         .then(function(response){
             if (response.ok) {
-                
+
                 return response.json();
-            }   
-            
-            throw Error;            
+            }
+
+            throw Error;
         })
         .then(function(infoCommand){
             let infoPageCommand = {
                 orderId: infoCommand.orderId,
             }
-            
+
 
             let commandLocalStorage = [];
             commandLocalStorage.push(infoPageCommand);
@@ -189,9 +190,9 @@ sendButton.addEventListener('submit', e => {
 
         .catch(function(error){
             location.href="error.html";
-        
+
             return error;
         });
-  
+
     }
 });
