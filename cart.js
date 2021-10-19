@@ -87,8 +87,9 @@ else {
             totalPrice += priceProduct;
         };
 
-        return totalPrice/100;
+        return (totalPrice/100).toFixed(2);
     };
+
 
     let totalPrice = calculateTotalPrice(cart);
 
@@ -182,7 +183,6 @@ sendButton.addEventListener('submit', e => {
             let commandLocalStorage = [];
             commandLocalStorage.push(infoPageCommand);
             localStorage.setItem("confirmCommand", JSON.stringify(commandLocalStorage));
-            //localStorage.setItem('orderId', infoCommand.orderId);
             localStorage.setItem('orderData', JSON.stringify(infoCommand));
 
             location.href="command.html";
