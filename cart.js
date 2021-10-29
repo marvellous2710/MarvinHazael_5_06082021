@@ -1,5 +1,10 @@
 displayArticlesNumber();//pour afficher le nombre d'article dans le panier
 
+/**
+ * Description
+ * @param HtmlElement inputElement
+ * affichage du formulaire et de ses conditions
+ */
 function isValid(inputElement, regex) {
     let messageContainer = inputElement.nextElementSibling;
 

@@ -1,6 +1,8 @@
 let cart       = getCart();
 let orderDatas = orderData();
 
+
+// bouton pour retourner à l'accueil
 let redirectionButton = document.createElement("a");
 redirectionButton.setAttribute("href", "index.html");
 redirectionButton.setAttribute("id", "backButton");
@@ -8,6 +10,7 @@ redirectionButton.innerText = "Revenir sur notre site";
 document.querySelector('#command').appendChild(redirectionButton);
 
 
+// message de remerciement
 if (orderDatas){
 
     let messageConfirmation = document.createElement('h1');
@@ -22,7 +25,7 @@ if (orderDatas){
     localStorage.clear();
 }
 
-
+// info formulaire dans le local storage
 function orderData(){
     let orderDatas = localStorage.getItem("orderData");
 
